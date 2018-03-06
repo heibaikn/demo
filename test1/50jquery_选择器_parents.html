@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.9.1.js"></script>
+	<script>
+		var a={
+			b:function(c){
+				console.log(c);
+			}
+		}
+		$(function(){
+			// var div=$('#kn').parents('div');
+			// var div=$('#kn').parents('div#c');
+			var div=$('#kn[href="#"]');
+			console.log(div);
+			console.log(div.attr('id'));
+		})
+	</script>
+</head>
+<body>
+	<div id='a'>
+		<div id="b">
+			<p><a href="#" id="kn" onclick="a.b(this)">12</a></p>
+			
+		</div>
+	</div>
+</body>
+</html>
+     

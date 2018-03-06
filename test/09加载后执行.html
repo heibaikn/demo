@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.11.3.js"></script>
+	<script>
+	/********一、window.onload=() *****************************************************/
+	//页面加载完成后执行
+	window.onload = function(){
+		var div=document.getElementById('aa');
+		console.log(div,1);				//ok
+	}
+
+	/*******二、$(document).ready()******************************************************/
+	//dom的完成后执行
+      $(document).ready(
+        function (){
+           // alert ("document 快于windom");
+			var div=document.getElementById('aa');
+			console.log(div,2);				//ok
+        }
+      );
+      $().ready(
+        function (){
+           // alert ("document 快于windom");
+			var div=document.getElementById('aa');
+			console.log(div,3);				//ok
+        }
+      );
+
+	/*******三、$(function(){})是二方式的缩写形式******************************************************/
+	$(function(){ 
+			var div=document.getElementById('aa');
+			console.log(div,4);				//ok
+	
+	}); 
+	</script>
+</head>
+<body>
+	<div id="aa"></div>
+</body>
+</html>

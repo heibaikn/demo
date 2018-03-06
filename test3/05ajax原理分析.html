@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.9.1.js"></script>
+
+</head>
+<body>
+    <form action="#" id="form" method="post" enctype="multipart/form-data">
+			<input type="text" name="name"><br>
+			<input type="text" name="password"><br>
+            <input type="file" id="file" name="apk_file" class="file"><br>
+	</form>
+	<input type="button" value="ajax" id="ajax">
+
+</body>
+	<script>
+		window.onload=function(){
+			document.getElementById('ajax').addEventListener('click',function(){
+				
+				var formElement = document.getElementById("form");
+				var xhr=getXhr();
+				var data=new FormData(formElement)
+			
+				console.log(xhr) 
+			 	if (xhr.upload) {
+			 		//开始
+			 		xhr.upload.onloadstart =function(e){
+			 			console.log(e,'我开始通过ajax传输数据了,这是onloadstart')
+			 		}
+
+			 		//发送
+			        xhr.upload.onprogress = function (e) {
+			            var done = e.position || e.loaded, total = e.totalSize || e.total;
+			            console.log('xhr.upload.onprogress: ' + done + ' / ' + total + ' = ' + (Math.floor(done / total * 1000) / 10) + '%,我在监控onprogress 事件. ',e);
+			        };
+
+
+
+				    //结束 事件 loadend：在通信完成或者触发error、abort或load事件后触发。 4种 不同的事件  
+				    //成功返回调用方法
+				    xhr.upload.onload =function(e){
+			 			console.log(e,'成功发送了么,这是onloadend',e)
+			 		}
+			 		//错误返回调用方法
+		    		xhr.upload.onerror =function(e){
+			 			console.log(e,'发送失败了么,这是onerror',e)
+			 		}
+
+	    			xhr.upload.onloadend =function(e){
+			 			console.log(e,'真的都会发生,这是onloadendend',e)
+			 		}
+
+					//发送完成 请求状态监控
+			        xhr.onreadystatechange = function (e) {
+				    if (4 == this.readyState) {
+				            console.log('xhr upload complete',e,'onreadystatechange状态为4的时候');
+				        }
+				    };
+			    }
+				xhr.open("POST", "01.php");
+				// xhr.send(data);
+			})
+		}
+
+		// 定义创建XMLHttpRequest对象的函数
+		function getXhr(){
+		// 声明XMLHttpRequest对象
+		var xhr;
+		// 根据不同浏览器创建
+		if(window.XMLHttpRequest){
+			// 其他浏览器
+			xhr = new XMLHttpRequest();
+		}else{
+			// IE浏览器(8及之前)
+			xhr = new ActiveXObject("Microsoft.XMLHttp");
+		}
+		// 返回XMLHttpRequest对象
+		return xhr;
+	}
+	</script>
+</html>
+     

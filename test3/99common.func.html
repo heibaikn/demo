@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.9.1.js"></script>
+
+</head>
+<body>
+	
+
+</body>
+	<script>
+		/*
+         * 添加事件处理程序
+         * @param object object 要添加事件处理程序的元素
+         * @param string type 事件名称，如click
+         * @param function handler 事件处理程序，可以直接以匿名函数的形式给定，或者给一个已经定义的函数名。匿名函数方式给定的事件处理程序在IE6 IE7 IE8中可以移除，在标准浏览器中无法移除。
+         * @param boolean remove 是否是移除的事件，本参数是为简化下面的removeEvent函数而写的，对添加事件处理程序不起任何作用
+        */
+        function addEvent(object,type,handler,remove){
+                if(typeof object!='object'||typeof handler!='function') return;
+                try{
+                        object[remove?'removeEventListener':'addEventListener'](type,handler,false);
+                }catch(e){
+                        var xc='_'+type;
+                        object[xc]=object[xc]||[];
+                        if(remove){
+                                var l=object[xc].length;
+                                for(var i=0;i<l;i++){
+                                        if(object[xc][i].toString()===handler.toString()) object[xc].splice(i,1);
+                                }
+                        }else{
+                                var l=object[xc].length;
+                                var exists=false;
+                                for(var i=0;i<l;i++){                                                
+                                        if(object[xc][i].toString()===handler.toString()) exists=true;
+                                }
+                                if(!exists) object[xc].push(handler);
+                        }
+                        object['on'+type]=function(){
+                                var l=object[xc].length;
+                                for(var i=0;i<l;i++){
+                                        object[xc][i].apply(object,arguments);
+                                }
+                        }
+                }
+        }
+        /*
+         * 移除事件处理程序
+        */
+        function removeEvent(object,type,handler){
+                addEvent(object,type,handler,true);
+        }
+
+        //字节数计算 最大字节数存储
+        function getChar(str,indx){
+            var bytesCount=0;//默认padding 为2个字节
+            for (var i = 0; i < str.length; i++){
+                var c = str.charAt(i);
+                if(/^[\u0041-\u005a]$/.test(c)){
+                    bytesCount += 2;
+                }else if (/^[\u0000-\u00ff]$/.test(c)) //匹配双字节
+                {
+                    bytesCount += 1;
+                }else{
+                    bytesCount += 2;
+                }
+            }
+   
+            return bytesCount;
+        }
+
+        console.log(getChar('我'))
+        console.log(getChar('Z'))
+        console.log(getChar('aB'))
+	</script>
+</html>

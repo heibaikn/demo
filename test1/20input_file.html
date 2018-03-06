@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.9.1.js"></script>
+	<script>
+		$(function(){
+			$('#a').change(function(){
+				console.log($('#a').val())
+				var str=$('#a').val();
+				getName1(str)
+			})
+			function getName(url){
+				url=url.split("\\");
+				console.log(url[url.length-1])
+				return [url.length-1];
+			}
+			function getName1(url){
+				var a=url.lastIndexOf("\\");
+				console.log(url.substr(a+1))
+			}
+		})
+	</script>
+	<style>
+		a{
+		    color: red;
+		    text-decoration: none;
+		}
+	</style>
+</head>
+<body>
+	<input type="file" id="a">
+</body>
+</html>
+     

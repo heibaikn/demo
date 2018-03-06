@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.9.1.js"></script>
+	<script>
+		/*window.onload=function(){
+			var sel=document.getElementById('a');
+			var div1=sel.getElementsByTagName('div');
+			sel.onclick=function(ev){
+		    var ev = ev || window.event;	
+		    var target = ev.target || ev.srcElement;//解决ie兼容
+		    
+		    for(var i=0;i<div1.length;i++){
+		    	if(target==div1[i]){
+		    		console.log(i);
+		    	}
+		    }
+		    //alert(target.innerHTML);
+
+		  }
+		}*/
+/*		var b={};
+		var a={"\u6570\u636e\u6a21\u578b\u7b56\u7565": {}, "SDK\u7b56\u7565": {}, "\u6240\u6709": {}, "res2": {}, "LA\u7b56\u7565": {}, "Tp\u5904\u7f5a\u7b56\u7565": {}, "studio\u7b56\u7565": {}, "-1": {}, "MRPCS\u7b56\u7565": {}, "\u4ea7\u54c1\u7b56\u7565": {}, "vsandbox\u7b56\u7565": {}, "UIC\u7b56\u7565": {}};
+		for(var key in a){
+			if(key=='所有'){
+				b[key]=a[key];
+			}
+		}
+		for(var k in a){
+			if(key!='所有'){
+				b[k]=a[k];
+			}
+		}	
+		for(var k in b){
+			console.log(k);
+		}*/
+		 var apples=["apple1","apple2","apple3"];
+		 for(var i=0,funs=[];i<3;i++){
+			console.log(apples[i])
+		   funs[i]=function(){console.log(apples[i],i);}
+		 }
+		 funs[0]();
+		 funs[1]();
+		 funs[2]();
+	</script>
+</head>
+<body>
+
+<div id="a">
+	<div>1</div>
+	<div>2</div>
+	<div>3</div>
+</div>
+<!-- 	<select name="" id="a">
+		<option value="1">1</option>	
+		<option value="2">2</option>	
+		<option value="3">3</option>	
+		<option value="4">4</option>	
+		<option value="5">5</option>	
+	</select> -->
+</body>
+</html>
+

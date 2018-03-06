@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.9.1.js"></script>
+	<script>
+	/*****************************************/
+	// 1、提交的不是value 属性的值
+	// 2、form表单元素里面的需要用 getAttribute和setAttribute 获取和修改value属性
+	// 
+		$(function(){
+			$('#a').click(function(){
+				$('#info').attr({value:"a"})
+			})
+			$('#b').click(function(){
+				console.log($('#info').get(0));
+				console.log(document.getElementById('info').getAttribute('value'));
+				console.log($('textarea').val());
+				console.log($('textarea').val('abc'));
+			})
+			$('#c').click(function(){
+				console.log($('textarea').val('abcdefg'));
+			})
+			
+		})
+	</script>
+
+</head>
+<body>
+	<form action="#">
+		用户名：<input type="text" name="user">
+		<br>
+		详  情：<textarea name="info" id="info" cols="30" rows="10" value="kn" style="display:block;">123</textarea>
+		<br>
+		<input type="submit" value="提交">
+	</form>
+	<div id="a"> 点击改变value</div>
+	<div id="b"> 点击查看value和val()</div>
+	<div id="c"> 点击查看value和val()2</div>
+</body>
+</html>
+     

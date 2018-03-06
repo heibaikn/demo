@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.9.1.js"></script>
+	<script>
+		$(function(){
+			/***显示隐藏*****************************************/
+			$('#btn1').click(function(){
+				$('#div').show(2000);//显示 show
+			})
+			$('#btn2').click(function(){
+				$('#div').hide(1000);//隐藏 hide
+			})	
+			$('#btn11').click(function(){
+				$('#div').toggle('slow');//切换 toggle
+			})	
+			/***淡入淡出*****************************************/
+			$('#btn3').click(function(){
+				$('#div').fadeIn(2000);
+
+			})
+			$('#btn4').click(function(){
+				$('#div').fadeOut(1000);
+			})	
+			$('#btn5').click(function(){
+				$('#div').fadeToggle('slow').fadeTo('slow',1);
+			})	
+			$('#btn51').click(function(){
+				$('#div').fadeTo('slow',0.5);
+			})						
+			/***滑动*****************************************/
+			$('#btn6').click(function(){
+				console.log('aa');
+				$('#div').slideUp();
+
+			})
+			$('#btn7').click(function(){
+				$('#div').slideDown(1000).fadeTo('slow',1);
+			})	
+			$('#btn8').click(function(){
+				$('#div').slideToggle('slow').fadeTo('slow',0.9);
+			})
+		})
+	</script>
+	<style>
+		div{
+			height:220px;
+			width:308px;
+			border:1px solid #000;
+			margin: 10px;
+		}
+	</style>
+</head>
+<body>
+	<button id="btn1">显示</button>
+	<button id="btn2">隐藏</button>
+	<button id="btn11">切换</button>
+	<hr>
+	<button id="btn3">淡入</button>
+	<button id="btn4">淡出</button>
+	<button id="btn5">切换</button>
+	<button id="btn51">透明度</button>
+	<hr>
+	<button id="btn6">上-滑动</button>
+	<button id="btn7">下-滑动</button>
+	<button id="btn8">切换</button>
+
+	<div id="div"><img src="img/01.jpg" alt=""></div>
+
+</body>
+</html>

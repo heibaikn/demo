@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		function Person(name,age,job){
+		    this.name = name;
+		    this.age = age;
+		    this.job = job;
+		    this.getName = getName;//优化内存 一次声明getName 可以多次调用
+		}
+		function getName() {		//申明一个getName 构造器
+		        return this.name;
+		    }
+		var person1 = new Person('Jack', 19, 'SoftWare Engineer');
+		var person2 = new Person('Liye', 23, 'Mechanical Engineer');
+		console.log(person1);
+		// throw aa;
+//闭包输出 斐波拉契数列  函数记忆功能 0,1,1,2,3   ,5,8,13,21,34
+	function getArr(){
+		var arr=[1,1];	// 		3 2  4
+		return function(key){		
+			if (key<arr.length){
+				return arr[key];
+			}else{
+				for (var i = arr.length; i <=key ;i++) {
+					arr[i]=arr[i-1]+arr[i-2];
+				}
+				console.info(key,arr);
+				return arr[key];
+			}		
+		}	
+	}
+	var obj=new getArr();
+	console.log(obj);
+/*	console.log(obj(6));
+	console.log(obj(4));
+	console.log(obj(10));*/
+	
+	var action=function(key){
+		if (key<this.arr.length) {
+			return this.arr[key];
+		}else{
+			for (var i = this.arr.length; i <=key ;i++) {
+				this.arr[i]=this.arr[i-1]+this.arr[i-2];
+			}
+			console.info(key,this.arr);
+			return this.arr[key];
+		}	
+	}
+	var getArr1={
+		arr:[1,1],
+		fun1:action
+	}
+	console.log(getArr1.fun1(14));
+	console.log(getArr1.fun1(4));
+/*		var Circle = function() {  
+		   var obj = new Object();  
+		   obj.PI = 3.14159;  
+		     
+		   obj.area = function( r ) {  
+		       return this.PI * r * r;  
+		   }  
+		   return obj;  
+		}  
+		  
+		var c = new Circle();  
+		console.log( c.area( 1.0 ) ); 
+*/
+
+/*	function outer(){
+		var arr=[];
+		for(var i=0;i<3;i++){
+			(function(i){
+				arr.push(function(){return i})
+			})(i);
+		}
+		return arr;
+	}
+	var getFuns=outer();//只有1个受保护的i？i最后=3
+	console.log(getFuns);
+	/*getFuncs-->[function(){return i},
+	              function(){return i},
+				  function(){return i}]
+	
+
+
+	console.log(getFuns[0]()); //3
+	console.log(getFuns[1]()); //3
+	console.log(getFuns[2]()); //3*/
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

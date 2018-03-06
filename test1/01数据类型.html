@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		var str='string';
+		console.log(typeof str);//string
+		console.log(str instanceof String);//false
+		console.log(str instanceof Object);//false
+
+
+		var arr=[];
+		console.log(arr instanceof Array);//ture
+		console.log(arr instanceof Object);//ture
+
+
+		// 最优方案 
+		
+		console.log(Object.prototype.toString.apply(arr));
+
+
+
+		Data=[12,34,56,78,123];
+ 		console.log(Math.min(1,2));
+ 		console.log(Math.min.apply(Math,Data));
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

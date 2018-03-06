@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+<script type="text/javascript">
+    var data1 = {
+        "password": "25d55ad283aa400af464c76d713c07ad",
+        "credentialsNonExpired": true,
+        "roles": [
+            "N_研发"
+        ],
+        "accountNonExpired": true,
+        "authorities": [
+            {
+                "flag": 1,
+                "children": [],
+                "authority": "customer:root",
+                "module": "customer",
+                "pid": 0,
+                "remark": "客户管理权限",
+                "id": 1,
+                "url": ""
+            },
+            {
+                "flag": 1,
+                "children": [],
+                "authority": "customer:list",
+                "module": "customer",
+                "pid": 1,
+                "remark": "客户列表权限",
+                "id": 2,
+                "url": ""
+            },
+            {
+                "flag": 1,
+                "children": [],
+                "authority": "task:stop",
+                "module": "task",
+                "pid": 6,
+                "remark": "任务停止",
+                "id": 7,
+                "url": ""
+            },
+            {
+                "flag": 1,
+                "children": [],
+                "authority": "customer:export",
+                "module": "customer",
+                "pid": 2,
+                "remark": "导出客户列表权限",
+                "id": 3,
+                "url": ""
+            },
+            {
+                "flag": 1,
+                "children": [],
+                "authority": "task:giveout",
+                "module": "task",
+                "pid": 5,
+                "remark": "任务放弃",
+                "id": 6,
+                "url": ""
+            },
+            {
+                "flag": 1,
+                "children": [],
+                "authority": "task:root",
+                "module": "task",
+                "pid": 0,
+                "remark": "任务管理权限",
+                "id": 4,
+                "url": ""
+            },
+            {
+                "flag": 1,
+                "children": [],
+                "authority": "task:list",
+                "module": "task",
+                "pid": 4,
+                "remark": "任务列表权限",
+                "id": 5,
+                "url": ""
+            }
+        ],
+        "enabled": true,
+        "accountNonLocked": true,
+        "username": "admin"
+    }
+    var data = data1.authorities
+    function fn(data, pid) {
+        var result = [], temp;
+        for (var i = 0; i < data.length; i++) {
+            if (data[i].pid == pid) {
+                var obj = data[i];
+                temp = fn(data, data[i].id);//fn(data, 1)
+                if (temp.length > 0) {
+                    obj.children = temp;
+                }
+                result.push(obj);
+            }
+        }
+        return result;
+    }
+    console.log(fn(data,0));
+    
+
+</script>
+
+<body>
+
+</body>
+
+</html>

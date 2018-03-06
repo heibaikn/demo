@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		// alert(window.ActiveXObject);  
+		window.onload=function(){
+			var btn=document.querySelector('input');
+			btn.onclick=function(){
+			/***一、实例化Ajax对象***************************/
+			var xhr=getXhr();
+
+			/**二、数据提交***********************************/
+			/*************1.使用open()+send()方法 get***************************/
+			// 以get形式
+			// xhr.open("get","06Ajax.php?act=json&user=kn",true);		//open() 提交数据 
+			// xhr.send();												
+			//1).send() 不能省略
+			//2).get数据在url上发送
+			//3).post 必须加请求头
+			/*************2.使用open()+send()方法 post***************************/
+			// 以post形式
+			// xhr.open("post","http://test.com/06Ajax.php?act=json",true);	//无法跨域访问		
+			xhr.open("post","/",true);	//open() 提交url		
+			xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+			xhr.send("user=kn&paw=123");
+
+			
+			/**三、数据接收***********onreadystatechang()***************************/
+			//本质上就2种数据 xml和字符串
+			//1、字符串
+				xhr.onreadystatechange = function(){
+				// 保证服务器端响应的数据发送完毕
+					if(xhr.readyState == 4){
+						// 保证这次请求必须是成功的
+						if(xhr.status == 200){
+							// 接收服务器端的数据
+							var json = xhr.responseText;//获取数据 json格式的字符串
+							console.log(json);
+						/*
+						 * 使用eval()函数进行转换
+						 * * 使用"()"将其包裹,eval()函数强制将其转换为JSON格式(javascript代码)
+						 * * 不使用"()"将其包裹,eval()函数将其识别为一个空的代码块
+						 */
+							var data = eval("("+json+")");//
+							console.log(data);
+						}
+					}
+				}
+				console.log(xhr);
+			}
+		}
+
+		// 定义创建XMLHttpRequest对象的函数
+		function getXhr(){
+		// 声明XMLHttpRequest对象
+		var xhr;
+		// 根据不同浏览器创建
+		if(window.XMLHttpRequest){
+			// 其他浏览器
+			xhr = new XMLHttpRequest();
+		}else{
+			// IE浏览器(8及之前)
+			xhr = new ActiveXObject("Microsoft.XMLHttp");
+		}
+		// 返回XMLHttpRequest对象
+		return xhr;
+	}
+	</script>
+</head>
+
+<body>
+	<input type="button" value="ajax">
+	<div id="file_upload-queue" class="uploadify-queue">
+		<div id="SWFUpload_0_3" class="uploadify-queue-item">      
+	    	<div class="cancel">         
+		    	<a href="javascript:$('#file_upload').uploadify('cancel', 'SWFUpload_0_3')">X</a>               
+			    <div> 
+				    <span class="fileName">wz.apk (317MB)</span><span class="data"> - 82%</span>               
+				    <div class="uploadify-progress">     
+					    <div class="uploadify-progress-bar" style="width: 82%;"><!--Progress Bar--></div>         
+					</div>         
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

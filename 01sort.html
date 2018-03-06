@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	var type='fileName';
+	var sort = 1;
+	var items=[{"fileName":"啊action","directory":true,"fileSize":null,"iconPath":null,"lastModify":"2017-11-20 13:03:27","fileType":"文件夹","filePath":"chahu/action","isArrears":0},{"fileName":"1chahu.max","directory":false,"fileSize":229376,"iconPath":"/img/softimage/max.png","lastModify":"2017-03-15 19:21:28","fileType":"max","filePath":"chahu/chahu.max","isArrears":0},{"fileName":"chahuchahuchahuchahuchahuchahuchahuchahuchahuchahu","directory":true,"fileSize":null,"iconPath":null,"lastModify":"2017-11-23 11:20:21","fileType":"文件夹","filePath":"chahu/chahuchahuchahuchahuchahuchahuchahuchahuchahuchahu","isArrears":0},{"fileName":"chahuchahuchahuchahuchahuchahuchahuchahuchahuchahu.rar","directory":false,"fileSize":19016,"iconPath":"/img/softimage/pack.svg","lastModify":"2017-11-20 12:02:16","fileType":"rar","filePath":"chahu/chahuchahuchahuchahuchahuchahuchahuchahuchahuchahu.rar","isArrears":0},{"fileName":"2新建文件夹","directory":true,"fileSize":null,"iconPath":null,"lastModify":"2017-11-22 15:03:47","fileType":"文件夹","filePath":"chahu/新建文件夹","isArrears":0}]
+	// console.log(data)
+	// data.
+	// webpack-dev-server --host 127.0.0.1 --public 127.0.0.1:8080 --watch-poll
+// 	var items = [
+//   { name: 'Edward', value: 21 },
+//   { name: 'Sharpe', value: 37 },
+//   { name: 'Sharpe', value: 2 },
+//   { name: 'Sharpe', value: 17 },
+//   { name: 'Sharpe', value: 37 },
+//   { name: 'And', value: 45 },
+//   { name: 'The', value: -12 },
+//   { name: 'Zeros', value: 37 }
+// ];
+
+var b=items.sort(function (a, b) {
+	console.log(a[type],b[type])
+  if ((a[type]> b[type])^sort) { 
+    return 1;
+  }
+  if ((a[type] < b[type])^sort) {
+    return -1;
+  }
+  // a 必须等于 b
+  return 0;
+});
+
+console.log(items)
+
+</script>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.9.1.js"></script>
+
+</head>
+<body>
+	
+
+</body>
+	<script>
+	var el=$('body');
+function cb1() {alert(1)}
+function cb2() {alert(2)}
+var arr = [cb1, cb2];
+ 
+$.queue(el, 'fun', cb1); // 第三个参数为function
+$.queue(el, 'arr', arr);
+
+var cbs1 = $.queue(el, 'fun'); // [cb1]
+var cbs2 = $.queue(el, 'arr'); // [cb1, cb2]
+
+console.log(cbs1,cbs2)
+	</script>
+</html>
+     

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>DOM解析XML案例</title>
+  <meta charset="utf-8" />
+ </head>
+
+ <body>
+  <script>
+	// 1. 创建XML解析器,解析XML得到的DOM对象
+	function parseXML(xml){
+		var xmlDoc = null;
+		if(window.DOMParser){
+			var parser = new DOMParser();
+			xmlDoc = parser.parseFromString(xml,"application/xml");
+		}else{
+			xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+			xmlDoc.async = false;
+			xmlDoc.loadXML(xml);
+		}
+		return xmlDoc;
+	}
+	// 2. 具体解析aaa
+	var xmlDoc = parseXML("<china><province name='山东省'><city name='青岛市' /><city name='济南市' /><city name='威海市' /><city name='日照市'/><city name='德州市' /></province></china>");
+	// a. 得到XML格式中省份信息 - 山东省
+		// 1. 得到<province>元素
+		var proEle = xmlDoc.getElementsByTagName("province")[0];
+		// 2. 得到<province>元素的name属性值
+		var proTxt = proEle.getAttribute("name");
+		console.log(proTxt);
+	// b. 得到XML格式中所有城市信息
+		// 1. 得到所有的<city>元素 - 数组
+		var citiesEle = xmlDoc.getElementsByTagName("city");
+		// 2. 遍历所有的<city>元素
+		for(var i=0;i<citiesEle.length;i++){
+			// 得到每个<city>元素
+			var cityEle = citiesEle[i];
+			// 3. 得到每个<city>元素的name属性值
+			var cityTxt = cityEle.getAttribute("name");
+			console.log(cityTxt);
+		}
+		
+  </script>
+ </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.9.1.js"></script>
+	<script>
+		$(function(){
+			//总数.size()
+			//数组.toArray()
+			//获取第几个.get()
+			//获取下标	.index()
+/*			console.log('div的个数有：',$('div').size());
+			console.log('$对象转数组：',$('div').toArray());
+			console.log('根据下标取第n个元素：',$('div').get(0));
+			console.log('元素相对于其同胞元素的 index 位置：',$('.div3').index());*/
+			//dom  转换为JQ  直接 $(dom)就可以
+
+		})
+		window.onload=function(){
+
+			var a=document.getElementsByTagName('div');
+			var div3=document.getElementsByClassName('div3')[0].getElementsByTagName('div');
+			
+			console.log(div3);
+		}
+	</script>
+</head>
+<body>
+	<div class="div1">1</div>
+	<div class="div2">2
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+	</div>
+	<div class="div3">
+		<div></div>
+		<div>32</div>
+		<div></div>
+	</div>
+	<div class="div4"></div>
+</body>
+</html>

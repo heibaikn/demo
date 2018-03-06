@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">	
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+	/**
+	 * 1.this本质是window下唯一的一个指针，指向当前正在调用方法的对象
+	 * 2.构造器中this.XX是当前的属性  var是当前的变量		在参数中this 可以是html对象
+	 * 3.this属性可以被继承
+	 *
+	 */
+	var test={ 
+	    a:"test", 
+	    this1:function(){ 
+	    console.log(this);		//当前对象(test)
+	     this.a="this"; 
+	     // console.log(this.a);  	//访问属性
+		} ,
+		var1:function(){
+			var a="var";
+			console.log(a);			//访问变量
+		}
+
+	}
+	// var inObj=new test.this1;		//只要是function 就可以被实例化
+	// console.log(inObj);	
+/*	console.log(test.this1());			
+	console.log(test.var1());*/
+
+/***********this属性被继承 局部变量不被继承***********/
+function faInfo(){
+	var name='fa';
+	this.balance='123456789';
+	
+}
+function sonInfo(){}
+sonInfo.prototype=new faInfo();
+var son=new sonInfo();
+console.log(son.balance);
+
+	</script>
+
+</head>
+<body>
+	
+</body>
+</html>

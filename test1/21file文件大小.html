@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/jquery-1.9.1.js"></script>
+
+</head>
+<body>
+<input type="file" id="oFile">
+<img src="/a.png" alt="a" id="img">
+<input type="button" value="确定" onclick="aa()">    
+
+</body>
+    <script>
+            console.log($('#img').get(0).fileSize)
+            console.log($('#img').get(0).files)
+
+                  ///获得图片的大小(单位字节)  
+            function GetFileSize() {  
+                var dom = $('#oFile');  
+                try {
+                console.log(dom.files.item(0).fileSize)  
+                    return dom.files.item(0).fileSize;  
+
+                } catch (e) {  
+                    try {  
+                        var img = new Image();  
+                        img.src = dom.value;  
+                        img.style.display='none';  
+                        document.body.appendChild(img);  
+                                    setTimeout(function(){  
+                                        document.body.removeChild(img);  
+                                    },1000);  
+                        return img.fileSize;  
+                    } catch (e) {  
+                        return -1;  
+                    }  
+                }  
+            }  
+              
+            function aa(){  
+                alert('文件大小=' + GetFileSize());    
+            }   
+/*            function aa(){
+                 var filePath = $('#oFile').val();            
+                 var fileSystem = new ActiveXObject("Scripting.FileSystemObject");   
+                 var file = fileSystem.GetFile (filePath);               
+                 fileSize = file.Size;  
+                 console.log(fileSize) 
+            }*/
+    </script>
+</html>
+     

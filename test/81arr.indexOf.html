@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.9.1.js"></script>
+
+</head>
+<body>
+	
+
+</body>
+	<script>
+/*	searchElement
+arr.indexOf
+要查找的元素
+fromIndex
+开始查找的位置。如果该索引值大于或等于数组长度，意味着不会在数组里查找，返回-1。如果参数中提供的索引值是一个负值，则将其作为数组末尾的一个抵消，即-1表示从最后一个元素开始查找，-2表示从倒数第二个元素开始查找 ，以此类推。 注意：如果参数中提供的索引值是一个负值，仍然从前向后查询数组。如果抵消后的索引值仍小于0，则整个数组都将会被查询。其默认值为0.
+*/
+		var s=[1,2,3,5,6,{a:'123'}];
+	/*	var u=s.indexOf(5);//返回5所在的下标3
+		var d=s.indexOf(8);//返回-1
+		console.log(u);
+		console.log(d);
+		*/
+		var u=s.indexOf(function(v){
+			return 1;
+		})
+		console.log(u)
+/*
+		find方法对数组中的每一项元素执行一次callback 函数，直至有一个callback返回true。当找到了这样一个元素后，该方法会立即返回这个元素的值，否则返回undefined。注意callback函数只会在分配了值的数组索引上调用，而不会在已删除或未分配值的索引上调用。
+
+调用callback函数带有3个参数：当前元素的值、当前元素的索引，以及数组本身。
+
+如果提供了thisArg参数，那么它将作为每次callback函数执行时的上下文对象，否则上下文对象为undefined。
+
+find方法不会改变数组。
+
+在第一次调用callback函数时会确定元素的索引范围，因此在find方法开始执行之后添加到数组的新元素将不会被callback函数访问到。如果数组中一个尚未被callback函数访问到的元素的值被callback函数所改变，那么当callback函数访问到它时，它的值是将是根据它在数组中的索引所访问到的当前值。被删除的元素不会被访
+ findIndex() 方法，它返回数组中找到的元素的索引，而不是其值。
+*/
+var s=[1,2,3,5,6,{a:'123'}];
+var idx=s.findIndex(function(v){
+	return v.a=='123'
+})
+console.log(idx)
+
+	</script>
+</html>
+     

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<table border="1">
+    
+    <caption>表标题</caption>
+    <thead>
+        <tr>
+          <th>Month</th>
+          <th>Savings</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>January</td>
+          <td>$100</td>
+        </tr>
+        <tr>
+          <td>February</td>
+          <td>$80</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+          <td>Sum</td>
+          <td>$180</td>
+        </tr>
+  </tfoot>
+</table>
+</body>
+</html>
+
+<!-- 
+在table中
+word-wrap 允许长单词自动换行
+word-break:break-all; 
+word-wrap:break-word;
+在恰当的断字点进行换行：
+
+word-break:hyphenate;
+normal	使用浏览器默认的换行规则。
+break-all	允许在单词内换行。
+keep-all	只能在半角空格或连字符处换行。固定显示 不换行
+
+ white-space: nowrap;规定文本不换行
+
+
+table 中
+table-layout:fixed;
+固定宽度
+ -->
+
+<!--      
+超过隐藏
+white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; -->
+
+<!-- 
+    表格居中
+     vertical-align和valign用于文本的对齐，比如vertical-align:top顶端对齐；vertical-align:bottom底端对齐；vertical-align:middle中部对齐或者说是居中；valign=“top”等也一样；valign属于一种特性，现在很多新版本的浏览器都不支持这种特性了，所以你最好不要直接使用类似 valign="top"这种直插式的样式，严格按照标准写样式，比如 style="vertical-align:top"或者调用样式表
+<td class="top1">文本</td>
+ .top1{vertical-align:top} 
+html页面代码量尽量精简，所有样式都调用样式表 
+
+
+动态表格  样式失效问题  为动态表格命名class  在这个class 下制定样式
+-->

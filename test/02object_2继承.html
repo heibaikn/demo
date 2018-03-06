@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		/*5种   对象的继承方式  */
+		var father={balance:10000000000,car:"=B=",show:function(){console.log('我有两个父属性了么？')}};
+		var mother={beaut:100,love:100};
+		function father1(balance){
+		this.balance=balance;
+		this.car="=B=";
+		this.show=function(){
+			return 'haha';
+			}
+		}
+		function mother1(beaut){
+			this.beaut=beaut;
+			this.love=100;
+		}
+		/********************1.__proto__赋值*********************/
+		var son1={};
+		son1.__proto__=mother;
+		// console.log(son1);
+
+		/********************2.setProtoTypeOf()函数***************/
+		var son2={};
+		Object.setPrototypeOf(son2,father);
+	
+		// console.log(son2);
+		// console.log(son2.__proto__);
+
+		/********************3.通过Object.create()函数****************************/
+		// 可写 可修改 可枚举
+		var son3=Object.create(father,{
+			favorite:{value:"坑爹"/*,writable:true,configurable:true,enumerable:true*/},
+			haha:{value:'对么'}
+		});
+		// console.log(son3);
+		// son3.show();
+		/*****************4.原型方式继承 *************************/
+		function son4Info(){}
+		son4Info.prototype=new father1();
+		
+		var son4 = new son4Info();
+		console.log(son4.show());
+
+
+		/******************5.用call继承属性 setPrototypeOf 继承方法 对象冒充*/
+		father1.prototype.show=function(){
+			console.log('我有一辆B开头的车');
+			}
+		mother1.prototype.mo=function(){
+			console.log('我有100分的美丽');
+		}
+		function son5Info(balance,car,beaut,love){//构造函数
+			father1.call(this,balance,car);//这个this 是当前son5函数 将对象属性赋值给当前this
+			mother1.call(this,beaut,love);
+			this.show1=function(){
+				console.log(this.balance,this.car,this.beaut);// 继承了2个类的属性 和一个类的方法  
+			}
+		}
+/*		Object.setPrototypeOf(son5Info.prototype,father1.prototype);//若不继承原型 父类的原型方法无法继承  单继承*/
+		Object.setPrototypeOf(son5Info.prototype,mother1.prototype);//继承方法 指向父类
+		var son5=new son5Info('1','2','3','4');// 除了第一,三个参数有形参，其他都没，故不可以修改
+		console.log(mother1.prototype);
+		console.log(mother1.__proto__);
+		console.log(son5);
+		son5.show1();
+		son5.mo();
+
+
+
+
+		
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

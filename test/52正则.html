@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+	// /******************************************************************/
+	// //尾部追加 kn is a good man 变为kn4 is5 a6 good7 man8
+	// var str="kn is a good man";
+	// var reg=/\b\w+\b/g;
+	// var n=4;
+	// str.match(reg,function(v){return console.log(v);});
+	// /******************************************************************/
+	// //数组降维度
+
+	// /******************************************************************/
+	// //获得url参数
+	// function getQueryString(name,url) { 
+	// 	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
+	// 	var str=url||window.location.search.substr(1);
+	// 	var r = str.match(reg); 
+	// 	if (r != null) return unescape(r[2]);
+	// 	return null; 
+	// } 
+	// console.log(getQueryString('kn','kn=520'));
+
+	// /******************************************************************/
+	// // 千分位
+	// input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	// /******************************************************************/
+	// // 字母数字下划线必须存在
+	// input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	// //  最后一个空格后面的值
+	//   var s = 'abcdef afefe xxef afef1111';
+	// s.match(/\s([^\s]+)$/)
+	
+	//替换指定 字符 
+	var str ='addtr1 23kn791addkn tr';
+	console.log(str.replace(/(kn)/g,function(v){
+		console.log(v);
+		return 'KN'+1;
+	}))
+	// 将多个空格替换为一个空壳
+	var str = 'aa bb              cc dd ee fff';
+	str.replace(/\s+/g, ' ');
+	
+	//将包含 col的字段提取出来 空格结束
+	var a='ngHeaderCell ng-scope col1 colt1'
+	a.match(/col\w+/g)
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

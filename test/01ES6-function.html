@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.9.1.js"></script>
+
+</head>
+<body>
+	
+
+</body>
+	<script>
+		// 默认对象解构
+/*		function foo({x, y = 5},two) {
+		  console.log(x, y,two);
+		}
+		console.log(foo.length)//长度为2
+
+		foo({},1) // undefined, 5,1
+		foo({x: 1}) // 1, 5,undefined
+		foo({x: 1, y: 2}) // 1, 2,undefined
+		foo() // TypeError: Cannot read property 'x' of undefined*/
+
+
+		// 解构赋值
+		// 写法一
+/*		function m1({x = 0, y = 0} = {}) {
+		  return [x, y];
+		}
+
+		// 写法二
+		function m2({x, y} = { x: 0, y: 0 }) {
+		  return [x, y];
+		}
+		// 函数没有参数的情况
+		m1() // [0, 0]
+		m2() // [0, 0]
+
+		// x和y都有值的情况
+		m1({x: 3, y: 8}) // [3, 8]
+		m2({x: 3, y: 8}) // [3, 8]
+
+		// x有值，y无值的情况
+		m1({x: 3}) // [3, 0]
+		m2({x: 3}) // [3, undefined]
+
+		// x和y都无值的情况
+		m1({}) // [0, 0];
+		m2({}) // [undefined, undefined]
+
+		m1({z: 3}) // [0, 0]
+		m2({z: 3}) // [undefined, undefined]*/
+
+
+		// 箭头函数
+	/*	var x=(a,b)=>{console.log(a,b)}
+			x(1,2)//1,2*/
+
+		// 
+		function add(...values) {
+			let sum = 0;
+
+			for (var val of values) {
+				sum += val;
+			}
+
+			return sum;
+		}
+
+		add(2, 5, 3) // 10
+	</script>
+</html>
+     

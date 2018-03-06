@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.9.1.js"></script>
+
+</head>
+<body>
+	<a href="#" class="kn">123</a>
+    <div style="height:0px;overflow:hidden;">
+            <input type="file" id="file_1">
+    </div>
+</body>
+	<script>
+		$('.kn').on('click',function(e){
+			  e.preventDefault();
+			console.log($(this).closest('#f'));
+            $('#file_1').click()
+		})
+
+		$('#file_1').change(function(){
+			console.log($('#file_1').val(),1)
+		})
+	</script>
+</html>
+     

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+  <script type="text/javascript">
+  // 使用 for()变量 arguments
+/*       function display() {
+     	//arguments.length  参数个数
+     	
+      document.writeln('该公司共有' + arguments.length + '人');
+      var sum = 0;
+      for (var i = 0; i < arguments.length; i++) {
+       sum += arguments[i];
+      }
+      return sum;
+     }
+
+     sum = display(1000, 2000, 3000, 4000, 5000);
+     document.writeln('sum1:' + sum + '<br/>');
+     sum = display(100, 200, 300);
+     document.writeln('sum2:' + sum);
+*/
+  function myConcat(separator) {
+    // var args = Array.prototype.slice.call(arguments, 1);
+
+    var args = Array.apply(null, arguments);
+    console.log(args);
+    // return args.join(separator);
+  }
+  // returns "red, orange, blue"
+myConcat(", ", "red", "orange", "blue");
+
+// returns "elephant; giraffe; lion; cheetah"
+// myConcat("; ", "elephant", "giraffe", "lion", "cheetah");
+
+// returns "sage. basil. oregano. pepper. parsley"
+// myConcat(". ", "sage", "basil", "oregano", "pepper", "parsley");
+  </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+	/*¶ÔÏó·½·¨
+	var reg=new Regexp();
+	reg.compile(regexp,string)	±àÒëÕýÔò±í´ïÊ½
+	reg.exec(string)			¼ìË÷×Ö·û´®ÖÐÖ¸¶¨µÄÖµ¡£·µ»ØÕÒµ½µÄÖµ£¬²¢È·¶¨ÆäÎ»ÖÃ
+	reg.test(string)			¼ìË÷×Ö·û´®ÖÐÖ¸¶¨µÄÖµ¡£·µ»Ø true »ò false¡£
+	f
+	  ×Ö·û´®·½·¨
+	str.search(regexp)			¼ìË÷ÓëÕýÔò±í´ïÊ½ÏàÆ¥ÅäµÄÖµ¡£
+	str.match(regexp)				ÕÒµ½Ò»¸ö»ò¶à¸öÕýÔò±í´ïÊ½µÄÆ¥Åä¡£
+	str.replace(regexp)			Ìæ»»ÓëÕýÔò±í´ïÊ½Æ¥ÅäµÄ×Ó´®¡£
+	str.split(regexp)				°Ñ×Ö·û´®·Ö¸îÎª×Ö·û´®Êý×é¡£
+	*/
+	// RegExp ·½·¨Éú³ÉÕýÔò±í´ïÊ½ ×ªÒë ÐèÒª\\¸ö 
+
+	/***1.È¥³ý¿Õ¸ñ******************************************************************/
+		// var str1='  as  las  kdj    ';
+		// var strRe1=str1.replace(/\s*/g,'');	//È¥³ýËùÓÐ¿Õ¸ñ gÈ«¾ÖµÄ×÷ÓÃ  µÃµ½ËùÓÐµÄÆ¥ÅäÏî
+		// var strRe1=str1.replace(/^\s*|\s*$/g,''); //È¥³ý×óÓÒ¿Õ¸ñ
+		// console.log(strRe1);
+		// console.log(str1);
+
+
+	/***2.Æ¥Åä±êÇ©******************************************************************/
+/*	var str2="<img /><div><p></p></div><a></a>";
+	var strRe2=str2.match(/<(.*)>.*?<\/\1>|<(.*)\/>/g);
+	// ["<img />", "<div><p></p></div>", "<a></a>"]  map
+	console.log(strRe2);
+	var num='sfdll12sdf23kl45sk77ll';
+	var num1=num.match(/\d+/g);
+	console.log(num1);*/
+
+	/***3.URLµØÖ·******************************************************************/
+/*	var reg=new RegExp(/https?:\/\/(\w+)(\.(\w+))*(\?\S*)?/);
+	var str3='°Ù¶Èhttps://www.baidu.com.cn?usrname=kn';
+	var regRe=reg.exec(str3);
+	console.log(regRe);*/
+
+	/*******4.ipµØÖ·**************************************************************/
+/*	var str="1.1.1.1;2.2.2.2;255.255.255.255;0.0.0.0"
+	function regCheckIp(val){
+        var reg=/^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/
+        var arr=val.replace(/^\s*|\s*$/g,'').split(';')
+        for(var i in arr){
+            if(arr[i].search(reg)==-1){
+                return true;
+            }
+        }
+        return false;
+    }£»
+	regCheckIp(str)*/
+
+	/********5.¶à¸öÓÃ»§ÃûÅÐ¶Ï*********************************************/
+/*	var str="v_kningkn,v_majie,v_tianx"
+	function regCheckIp(val){
+        var reg=/^\w+$/;
+        var arr=val.replace(/^\s*|\s*$/g,'').split(',');
+        for(var i in arr){
+            if(arr[i].search(reg)==-1){
+                return true;
+            }
+        }
+        return false;
+    }
+	console.log(regCheckIp(str))*/
+	/*******6.»ñÈ¡ÎÄ¼þºó×ºÃû**************************************************************/
+	function validate(str){ 
+		var a=str.split('.').pop();
+		console.log(a)   //txt
+		/*var d=str.match(/\.[^\.]+$/)
+		console.log(d) //[".txt", index: 8, input: "test.1.3.txt"]*/
+	} 
+	validate("test.1.3.txt")
+	/*********7¡¢Ä£°åÌæ»»¹¦ÄÜ************************************************************/
+		// var reg = new RegExp("\\[([^\\[\\]]*?)\\]", 'igm'); Æ¥Åä [] ÄÚµÄÄÚÈÝ
+	var reg = /\{\{(.+?)\}\}/g;		//Æ¥Åä {{}} µÄÄÚÈÝ
+	var html="[title]--[dateA]--{{title}}---{{dateA}}"
+
+	var source = html.replace(reg, function (node, key) {
+
+	    return {
+	        'title': 'ÎÒÊÇhbuilder°¡£¬¹þ¹þ¹þ¹þ',
+	        'dateA': '2016-09-19'
+	    }[key];
+	});
+	console.log(source)
+	/*********************************************************************/
+
+/*	var getUrl=function(urlSearch,name) {
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+		var r = urlSearch.substr(1).match(reg);
+		// console.log(r)
+		if (r != null) return decodeURIComponent(r[2]); return null;
+	}
+	console.log(getUrl('https://www.baidu.com.cn?usrname=kn','usrname'))*/
+	
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

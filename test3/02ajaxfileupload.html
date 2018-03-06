@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+</head>
+<body>
+        <form action="#" id="add_apk" method="post" enctype="multipart/form-data">
+	            <input type="file" id="file_1" name="apk_file" class="file">
+	            <input type="button" value="确定" class="btn">
+    	</form>
+
+</body>
+	<script src="js/jquery-1.9.1.js"></script>
+	<!-- 利用iframe 发送ajax 请求 -->
+	<script src="js/ajaxfileupload.js"></script>
+	<script>
+		$('.btn').click(function(){
+			var request={
+				type:1,
+				name:'kn',
+			}
+		   $.ajaxFileUpload({
+                url: '01.php',
+                data:request,
+                secureuri: true, //是否需要安全协议，一般设置为false
+                type: 'POST',
+                dataType: 'Content',
+                fileElementId:'file_1',
+                success: function(result){
+                	alert(result);
+    				console.log(result)
+                }
+			})
+		})
+	</script>
+</html>
+     

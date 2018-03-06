@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.9.1.js"></script>
+	<style>
+	div{
+		height: 100px;
+		border: 1px solid #000;
+		margin: 5px;
+		font-size:16px;
+	}
+	.one{
+		/*参数 方向，开始颜色 开始颜色的位置，结束颜色 结束颜色的位置*/
+		background: linear-gradient(to top, #fff, #333);
+	}
+	.two{
+		background: linear-gradient(#fff, #333);
+		
+	}
+	.three{
+		/*参数 方向，开始颜色 开始颜色的位置，结束颜色 结束颜色的位置*/
+		background: linear-gradient(2deg, #f00 40%, #000 60%);
+	}
+
+	</style>
+</head>
+<body>
+	<!-- 渐变可以通过 css3属性linear-gradient 和 滤镜来实现 -->
+	<div class="one"></div>
+	<div class="two"></div>
+	<div class="three"></div>
+
+</body>
+	<script>
+		
+	</script>
+</html>
+     

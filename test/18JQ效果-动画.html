@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.9.1.js"></script>
+	<script>
+/*		$(function(){
+			$('#div').click(function(){
+				// style 属性名用驼峰  值用引号包含
+				//1.JQ 无法修改背景色，一般支持大小，位置，透明色
+				$('#div').animate({backgroundColor:'#FF0000',},1000,)
+			})
+		})*/
+	$(function(){
+		$("#div").click(function(){
+			$("#div").animate(
+			{height:'100px',},1000,'swing',function(){console.log('aa')})
+			})		
+		
+		$('#div2').click(function(){
+			// 使用 toggle和animate实现 单个依次隐藏的效果
+			$(".information_title").toggle(function () {
+            	$(this).next(".information_contant").animate({ height: '	', opacity: 'toggle' }, "slow");
+        	}, function () {
+            	$(this).next(".information_contant").animate({ height: 'toggle', opacity: 'toggle' }, "slow");
+        	});
+		})
+	})
+	</script>
+
+<script type="text/javascript">
+    // 收缩展开效果
+    $(document).ready(function () {
+
+    });
+</script>
+	<style>
+		div{
+			border: 1px solid #000;
+		}
+	</style>
+</head>
+<body>
+	<div id="div">1</div>
+	<div id="div2">2</div>
+	 <div class="information_title">      
+       title
+
+    </div>
+   
+    <div class="information_contant">
+       contant
+    </div>
+</body>
+</html>
+
+
+

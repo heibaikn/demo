@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.9.1.js"></script>
+	<script>
+		$(function(){
+			var a1=1;
+			function aa(a){console.log('aa',a);}
+			function bb(){console.log('bb');}
+			var obj={
+				func:function(){
+					console.log('cc')
+				}
+			}
+			// setTimeout('aa(a1)',1000);//错误语法
+			/*setTimeout(aa(),1000);//正确语法*/
+			/*setTimeout(aa(1),1000);//可以传参*/
+			// setTimeout(aa(a1),1000);//可以传参
+			
+/*			setTimeout(function(){
+					aa()//有输出
+			},2000);*/
+			// setInterval(bb(),1000);//错误语法
+			// setInterval(bb(),100);//正确语法 但只执行一次
+			// setInterval(bb,100);//正确语法 多次执行
+			// setInterval(obj.func,100);//正确语法 多次执行
+			t=setInterval(function(){aa(a1)},100);//正确语法 多次执行  以匿名函数多次传参
+			clearInterval(t);//关闭定时器
+
+		})
+/*		setTimeout(function(){
+				aa()//无输出
+		},2000);*/
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
+     

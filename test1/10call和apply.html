@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+/*call方法: 
+语法：call(thisObj，Object)
+定义：调用一个对象的一个方法，以另一个对象替换当前对象。
+说明：
+call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。 
+如果没有提供 thisObj 参数，那么 Global 对象被用作 thisObj。 */
+
+/*apply方法： 
+语法：apply(thisObj，[argArray])
+定义：应用某一对象的一个方法，用另一个对象替换当前对象。 
+说明： 
+如果 argArray 不是一个有效的数组或者不是 arguments 对象，那么将导致一个 TypeError。 
+如果没有提供 argArray 和 thisObj 任何一个参数，那么 Global 对象将被用作 thisObj， 并且无法被传递任何参数。*/
+// 1、都是function 内的方法
+// 2、作用相同
+// 3、使用了call和apply是this对象被替换，本身参数只能用局部变量访问
+
+// 1、传递参数不同
+function Person(name,age) {  
+this.name=name;  
+this.age=age;  
+this.money = 500;
+} 
+// console.log(Person.prototype);
+function myFun(money) {  
+	console.log(this);      
+	console.log(money);	
+    console.log(this.money)
+}
+
+var money = 100;
+// myFun(money); 
+//return 100;  //window.myFun(money); save to myFun(money);
+//这个时候this指向的是window对象，其实myFun函数和定义的var money = 100;都作为window对象子对象（即全局对象）
+
+// myFun.apply(window);
+
+ //save to window.myFun.apply(window,[]);  
+//return 100;  //同上 
+
+// myFun.apply(new Person('zhangsan',23),['12']);  
+//return 500, 空数组作为参数，仅符合语法要求
+//这个时候myFun方法里面的this指向的是new Person('zhangsan',23)对象，二不是myFun类(函数)，故弹出500
+
+// myFun.call(new Person('zhangsan',23),12);  
+//return 500, 后面money,300和mycardId是参数列表作为参数，一一列出
+//这个时候myFun方法里面的this指向的是new Person('zhangsan',23)对象，二不是myFun类(函数)，故弹出500
+
+
+// 栗子b
+/*var a=Math.max.apply(null,[1,2,3]) 
+console.log(a)*/
+
+function log(){
+	// ues stri
+	var arg=Array.apply(null,arguments);
+	console.log(arg);
+}
+
+log(1,2,{a:'a'})
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

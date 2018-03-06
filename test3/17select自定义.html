@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+</head>
+
+<body>
+	<select name="WebSiteTarget" id="WebSiteTarget" class="w1" onchange="editable2(this);">
+    <option value="-1">请选择城市</option>
+    <option>福州</option>
+    <option>厦门</option>
+    <option>南平</option>
+    <option value="0">(自定义输入)</option>
+</select>
+
+</body>
+<script>
+    var a=document.createElement("DIV");
+    console.log(a)
+    function editable2(dom) {
+        if (dom.value == "0") {
+            var newvalue = prompt("请输入", "");
+            if (newvalue) {
+                addSelected(dom, newvalue, newvalue);
+            }
+        }
+    }
+
+    function addSelected(fld1, value1, text1) {
+        if (!document.all) {
+        	// ie   其他select下无createElement方法
+            console.log(1)
+            var Opt = fld1.document.createElement("OPTION");
+            Opt.text = text1;
+            Opt.value = value1;
+            fld1.options.add(Opt);
+            Opt.selected = true;
+        } else {
+        	// 其他
+            var Opt = new Option(text1, value1, false, false);
+            Opt.selected = true;
+            fld1.options[fld1.options.length] = Opt;
+        }
+    }
+</script>
+</html>
+     

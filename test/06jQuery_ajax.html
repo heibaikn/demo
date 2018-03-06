@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.11.3.js"></script>
+	 	<script>
+
+	 	$(function(){
+	 		$("#btn").click(function(){
+	 			//发送数据格式 json字符串
+				var request = {"name":"zhangwuji","pwd":"123"};
+
+				/**********1.load()****************************************/
+				//a.$(selector).load(url,data,function(response,status,xhr)) response是html字符串
+				//b.html JQ对象.load() 方法通过 AJAX 请求从服务器加载数据，并把返回的数据放置到指定的元素中。
+				//c.如果提供的数据是对象，则使用 POST 方法；否则使用 GET 方法。
+/*				
+1.get请求需注意缓存问题,post请求不需担心这个问题
+2.post请求必须设置Content-Type值为application/x-form-www-urlencoded
+3.发送请求时,因为get请求的参数都在url里,所以send函数发送的参数为null,而post请求在使用send方法时,却需赋予其参数*/
+
+/*				
+				$("div").load("06jQuery_ajax.php",request,function(data){
+					console.log(data);
+				});
+*/
+
+
+				/**********2.get()****************************************/
+				//a.$.get(url,data,success(response,status,xhr),dataType)
+				//		dataType("xml","html","text","script","json","jsonp)
+				//b.get() 方法通过远程 HTTP GET 请求载入信息
+
+
+/*				$.get("06jQuery_ajax.php",request,function(data){
+					//console.log(eval("("+data+")"));
+					//json 返回的是json对象
+					console.log(data);
+				},"json");*/
+	 		
+
+
+				/**********3.post()****************************************/
+				//a.jQuery.post(url,data,success(data, textStatus, jqXHR),dataType)
+				//b.
+				// var request1='<user><name>zhangwuji</name><pwd>123456</pwd></user>';
+				// var request1='asd';
+/*				$.post("06jQuery_ajax.php?act=xml", request,
+				   function(data){
+				     console.log(data);
+				   }, "xml");*/
+
+
+				/**********4.ajax()****************************************/
+				//a.jQuery.ajax([settings])
+				var a='';
+				function aa(){
+					$.ajax({
+					  type: 'POST',
+					  url: '06jQuery_ajax.php',
+					  data: request,
+					  // dataType: 'json',//object
+					  datatype: 'json',//string
+					  success: function(data){
+					  	console.log(data,typeof data);
+					  	a=2;
+					  	return 1;
+					  },
+					  error:function(){
+	
+					  }
+					}); 
+					return a;
+				}
+				console.log(aa());
+				console.log(a)
+			})
+
+		})
+		// console.log(aa);
+	</script>
+</head>
+<body>
+	<input type="button" value="load" id="btn">
+	<div></div>
+</body>
+</html>

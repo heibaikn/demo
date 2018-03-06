@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.9.1.js"></script>
+	<style>
+		.one{
+			background-color: #f00;
+			transform: rotate(160deg);
+			transition:all 5s ease-in-out;
+		}
+		.one:before{
+			background-color: #f00;
+		}
+		.two{
+			/*transition:all 5s ease-in-out;*/
+			transition:background 1s ease-in-out 1s,transform 1s ease-in-out 1s;
+		}
+		.two:hover{
+			/*width: 200px;*/
+			background: #f00;
+			/*transform: rotate(160deg);*/
+			transform: scale(2,4);
+		}
+
+		.img2:hover{
+			transform: scale(2,4);
+		}
+	</style>
+</head>
+<body>
+<!-- Transform,Transition,Animation 3种动画效果 -->
+<!-- transition 状态过度 写在目标元素中
+	执行变换的属性：transition-property；		none|all|指定的某个元素
+	变换延续的时间：transition- duration；		适用于所有伪类
+	在延续时间段，变换的速率变化transition-timing-function；
+	变换延迟时间transition- delay, 指定某个动画在所有动画完成后 几秒执行
+-->
+
+<!-- transform 最终状态 写在hover伪类上-->
+	<div class="one">水平运动<img src="image/1.jpg" class="img1" alt=""></div>
+	<div class="two">2d旋转<img src="image/1.jpg" class="img" alt=""></div>
+	<div class="three">缩放<img src="image/1.jpg" class="img2" alt=""></div>
+
+</body>
+	<script>
+		
+	</script>
+</html>
+     

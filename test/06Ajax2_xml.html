@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Ajax中的XML格式</title>
+  <meta charset="utf-8" />
+ </head>
+
+ <body>
+  <input type="button" value="Ajax" id="btn">
+  <script>
+	var btn = document.getElementById("btn");
+	btn.onclick = function(){
+		// 实现Ajax的异步交互
+		var xhr = getXhr();
+		xhr.open("post","06Ajax.php?act=xml");
+		xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+		/*
+		 * 如何构建符合XML格式的请求数据
+		 * * 注意
+		 *   * 请求数据的格式 - key=value 不能改变的
+		 * * 将value值构建成符合XML格式的数据
+		 *   * 数据类型 - 字符串(string)
+		 *   * 格式符合XML的语法要求
+		 * * 编写注意
+		 *   * 定义变量 - 专门构建XML格式的数据
+		 *   * 在send()方法进行拼串
+		 */
+		var user = "<user><name>zhangwuji</name><pwd>123456</pwd></user>";
+		xhr.send("user="+user);
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState==4&&xhr.status==200){
+				// 接收服务器端的响应数据
+				var xmlDoc = xhr.responseXML;
+				console.log(xmlDoc);
+				var nameEle = xmlDoc.getElementsByTagName("name")[0];
+				var txtEle = nameEle.childNodes[0];
+				console.log(txtEle.nodeValue);
+			}
+		}
+	}
+	function getXhr(){
+		var xhr = null;
+		if(window.XMLHttpRequest){
+			xhr = new XMLHttpRequest();
+		}else{
+			xhr = new ActiveXObject("Microsoft.XMLHttp");
+		}
+		return xhr;
+	}
+  </script>
+ </body>
+</html>

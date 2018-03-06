@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+	/**一、html的Window事件属性***********************************************/
+	function fun(){
+		console.log('div1');
+	}
+
+
+	window.onload=function(){
+	/**二、ele.onclick******************************************************/
+	//添加事件  不支持添加多个点击事件
+		var div2 = document.getElementById("div21"); 
+		div2.onclick = function(){ //在冒泡的时候执行
+			console.log('div2');
+		}
+		div2.onclick = function(){ //在冒泡的时候执行
+			console.log('div21');
+		}
+	/**三、ele.addEventListener('事件名称',方法,是否在捕获中执行)******************************************************/
+	//事件绑定 支持添加多个点击事件
+	//使用 removeEventListener() 方法移除由 addEventListener() 方法添加的事件句柄:
+	//如果浏览器不支持 addEventListener() 方法, 你可以使用 attachEvent() 方法替代。
+		var  a=document.getElementById("div2");
+		a.addEventListener('click', function(){console.log('a')}, false); 
+		a.addEventListener('click', function(){console.log('班')}, false); 
+		//true在捕获时候执行,a  div2  flase在冒泡时候执行 div2 a
+	}
+		/**一、直接绑定******************************************************/
+	</script>
+	<style>
+		div{
+			background: #f00;
+			border:1px solid #000;
+			margin: 2px;
+		}
+	</style>
+</head>
+<body>
+	<div id="div1" onclick="fun()">html的Window事件属性</div>
+	<div id="div2">
+	<div id="div21">12</div>elem.onclick
+	</div>
+
+</body>
+</html>

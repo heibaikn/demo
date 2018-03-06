@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.9.1.js"></script>
+	<script>
+	// notetype 节点类型1-9  nodeName nodeType nodeValue
+	// childNodes		元素下面所有子元素
+	// item(n)			根据下标得到第n个子元素
+	// createElement() 1
+	// createTextNode()3
+	//  insertAdjacentHTML 原生= $.html()
+
+	// appendChild('')
+	// insertBefore('','')
+	// removeChild
+
+		window.onload=function(){
+			/****appendChild******************************************************/
+			$('.div1').bind('click',function(){
+				//创建b标签
+				var para=document.createElement("b");
+				//创建文本节点
+				console.log(para.nodeName,para.nodeType,para.nodeValue);//b 1 null
+				var node=document.createTextNode("This is new.");
+				//将文本追加在b元素中
+				para.appendChild(node);
+				var element=$('.div1').get(0);
+				// 将b元素追加在.div1
+				element.appendChild(para);
+			})
+			/****insertBefore******************************************************/
+
+			$('.div2').bind('click',function(){
+				var para=document.createElement("b");
+				var node=document.createTextNode("This is new.");
+				para.appendChild(node);
+
+				var element=$('.div1').get(0);
+				var child=$('a').get(0);
+				// 将para元素 添加到element中的child元素前面
+				element.insertBefore(para,child);
+			})
+			/****removeChild******************************************************/
+			$('#btn1').on('click',function(){
+				var div2=$('.div2').get(0);
+				console.log($('.div2').get(0).childNodes);
+				div2.removeChild(div2.childNodes.item(0));
+			})
+			/****removeChild******************************************************/
+			$('#btn2').on('click',function(){
+				var div2=$('.div2').get(0);
+				console.log($('.div2').get(0).childNodes.length);
+
+				var para=document.createElement("b");
+				var node=document.createTextNode("This is new.");
+				para.appendChild(node);
+
+				console.log(para);
+				div2.replaceChild(para,div2.childNodes.item(0));
+			})			
+		}
+	</script>
+	<style>
+		div{
+			height: 60px;
+			border: 1px solid #000;
+			margin: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="div1">1
+		
+	</div>
+	<div class="div2"> <a href="#">2</a> </div>
+	<button id="btn1">删除div2下面的元素</button>
+	<button id="btn2">替换div2下面的元素</button>
+	<div class="div3">3</div>
+	<div class="div4">4</div>
+</body>
+</html>

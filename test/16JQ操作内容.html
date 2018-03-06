@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.9.1.js"></script>
+	<script>
+		$(function(){
+			/***JQuery内容的操作***********************************************/
+			//a).html()		用为读取和修改元素的HTML标签
+			//b).text()		用来读取或修改元素的纯文本内容
+			//c).val()		用来读取或修改表单元素的value值
+/*			$('.div1').bind('click',function(){
+				console.log($('.div1').html('<a href="#">div1</a>'));//
+			});
+			$('.div2').bind('click',function(){
+				console.log($('.div2').text('<a href="#">div1</a>'));//
+			});
+			$('.div3').bind('click',function(){
+				//attr 会重绘制dom
+				//val  不会				但都能通过form提交
+				// console.log($('body input').val('<a href="#">div1</a>'));
+				console.log($('body input').attr('value','aa'));//
+			});
+			$('.div4').bind('click',function(){
+				console.log($('input:first').val('jquery选择器挺好的'));//
+			});*/			
+		})
+		window.onload=function(){
+			/***JS内容的操作***********************************************/
+			//innerHTML			符合所有的标准		outerHTML
+			//innerText			ie
+			//value				修改表单含value属性的标签
+			var a=document.getElementById('div').innerHTML;		
+			var b=document.getElementById('div').outerHTML;		
+			console.log(a);
+			console.log(b);
+
+		}
+
+	</script>
+	<style>
+		div{
+			height: 20px;
+			border:1px solid #000;
+			margin: 10px;
+		}
+	</style>
+</head>
+<body>
+<form>
+	<div class="div1" id="div"><span>1</span></div>
+	<div class="div2">2</div>
+	<input type="text" value="input" name="aa">
+	<div class="div3">3</div>
+	<div class="div4">4</div>
+	<input type="submit" value="提交">
+</form>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.9.1.js"></script>
+
+</head>
+<body>
+    <form action="#" id="form" method="post" enctype="multipart/form-data">
+			<input type="text" name="name"><br>
+			<input type="text" name="password"><br>
+            <input type="file" id="file" name="apk_file" class="file"><br>
+            <input type="button" value="确定" class="btn"><br>
+            <input type="button" value="提交通过jquery" class="btn1"><br>
+            <input type="button" value="得到文件大小" class="btn2"><br>
+            <img src="img/a.png" alt="" id="img"><br>
+            <input type="button" value="得到图片大小-通过图片属性" class="btn3"><br>
+	</form>
+
+</body>
+	<script>
+		//ajax 提交
+		$('.btn').click(function(){
+
+			var formElement = document.getElementById("form");
+			var oReq = new XMLHttpRequest();
+			var data=new FormData(formElement)
+			oReq.open("POST", "01.php");
+			oReq.send(data);
+		})
+
+
+		$('.btn1').click(function(){
+			var fd = new FormData(document.getElementById("form"));
+			fd.append("CustomField", "This is some extra data");
+			$.ajax({
+			  url: "01.php",
+			  type: "POST",
+			  data: fd,
+			  processData: false,  // 告诉jQuery不要去处理发送的数据
+			  contentType: false   // 告诉jQuery不要去设置Content-Type请求头
+			});
+		})
+		//得到文件大小
+		$('.btn2').click(function(){
+			var file=$('#file').get(0).files
+			console.log(file,file[0].size+'B');
+		})
+
+		$('.btn3').click(function(){
+			console.log($('#img').get(0).fileSize)		//undefine 
+		})
+	</script>
+</html>
+     

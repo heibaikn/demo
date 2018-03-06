@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.9.1.js"></script>
+
+</head>
+<body>
+	
+
+</body>
+	<script>
+/*
+1、expires属性
+指定了coolie的生存期，默认情况下coolie是暂时存在的，他们存储的值只在浏览器会话期间存在，当用户推出浏览器后这些值也会丢失，如果想让cookie存在一段时间，就要为expires属性设置为未来的一个过期日期。现在已经被max-age属性所取代，max-age用秒来设置cookie的生存期。
+2、path属性
+它指定与cookie关联在一起的网页。在默认的情况下cookie会与创建它的网页，该网页处于同一目录下的网页以及与这个网页所在目录下的子目录下的网页关联。
+3、domain属性
+domain属性可以使多个web服务器共享cookie。domain属性的默认值是创建cookie的网页所在服务器的主机名。不能将一个cookie的域设置成服务器所在的域之外的域。
+例如让位于order.example.com的服务器能够读取catalog.example.com设置的cookie值。如果catalog.example.com的页面创建的cookie把自己的path属性设置为“/”，把domain属性设置成“.example.com”，那么所有位于catalog.example.com的网页和所有位于orlders.example.com的网页，以及位于example.com域的其他服务器上的网页都可以访问这个coolie。
+4、secure属性
+它是一个布尔值，指定在网络上如何传输cookie，默认是不安全的，通过一个普通的http连接传输
+*/
+	// 对cookie的操作,是对字符串的操作
+	// console.log(document.cookie);
+	// document.cookie="name=kn";  
+	console.log(document.cookie);
+	var func={
+		getCookie:function(name){
+			var cookieValue = null;
+        	if (document.cookie && document.cookie != '') {
+	            var cookies = document.cookie.split(';');
+	            for (var i = 0; i < cookies.length; i++) {
+	                // var cookie = jQuery.trim(cookies[i]);
+	                var cookie = cookies[i].replace(/^\s*|\s*$/g,'');
+	                // Does this cookie string begin with the name we want?
+	                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+	                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+	                    break;
+	                }
+	            }
+	        }
+        	return cookieValue;
+		},
+		setCookie:function(name,value){
+			var Days = 30;
+			var exp = new Date();
+			exp.setTime(exp.getTime() + Days*24*60*60*1000);
+			document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+		},
+		delCookie:function(name){
+			var exp = new Date();
+			exp.setTime(exp.getTime() - 1);
+			var cval=func.getCookie(name);
+			if(cval!=null)
+			document.cookie= name + "="+cval+";expires="+exp.toGMTString();
+		}
+
+	}
+
+		console.log(func.setCookie('name','v_kninkuang'))
+		console.log(func.getCookie('name'))
+		console.log(func.delCookie('name'))
+/*		console.log(document.cookie)
+
+		localStorage.lastname="Smith";
+		console.log(localStorage.lastname);
+		if (localStorage.pagecount){
+		  localStorage.pagecount=Number(localStorage.pagecount) +1;
+		  }
+		else{
+		  localStorage.pagecount=1;
+		  }
+		document.write("Visits "+ localStorage.pagecount + " time(s).<br>");
+
+
+		 sessionStorage.lastname="Smith1";
+		 sessionStorage.setItem('user','kn')
+		 console.log(sessionStorage.lastname,sessionStorage.getItem('user'));
+		 if (sessionStorage.pagecount){
+		  	sessionStorage.pagecount=Number(sessionStorage.pagecount) +1;
+		 }
+		 else{
+		 	 sessionStorage.pagecount=1;
+		 }
+		 document.write("Visits "+sessionStorage.pagecount+" time(s) this session.");
+		console.log(window.sessionStorage)*/
+		// Save data to sessionStorage  两种声明方式
+
+/*		sessionStorage.setItem('key', 'value');
+		sessionStorage.key1='value1'
+
+		// Get saved data from sessionStorage 获取值的方式
+		var key=sessionStorage.getItem('key');
+		var key1=sessionStorage.key1;
+		console.log(sessionStorage,key,key1)
+		// Remove saved data from sessionStorage
+		sessionStorage.removeItem('key');
+
+		// Remove all saved data from sessionStorage
+		sessionStorage.clear();
+		console.log(sessionStorage)*/
+
+	</script>
+</html>
+     

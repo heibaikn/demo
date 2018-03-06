@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.9.1.js"></script>
+	<script src="js/jquery.form.min.js"></script>
+	<style>
+		.file{
+			position: absolute;
+		    left: 0;
+		    top: 0;
+		    width: 100%;
+		    height: 30px;
+		    z-index: 999;
+		    opacity: 0;
+		    filter:alpha(opacity=0);
+		}
+	</style>
+</head>
+<body>
+<div class="file_box clearfix">
+    <a href="javascript:;" title="上传文件" class="btn fl" id="add_log">上传文件</a>
+    <div style="<!-- height:0px;overflow:hidden; -->">
+        <form action="#" id="add_log_file" method="post" enctype="multipart/form-data">
+            <input type="file" id="file_1" name="tp2_file">
+            <!-- <input type="submit" value="确定" > -->
+        </form>
+    </div>
+<button id="div">123</button>
+</div>
+<hr/>
+兼容IE
+        <form action="#" id="add_apk" method="post" enctype="multipart/form-data">
+        	<div style="position:relative;">
+        		点击
+	            <input type="file" id="file_2" name="apk_file" class="file">
+        	</div>
+	            <input type="button" value="确定" class="btn1">
+    	</form>
+</body>
+
+<script>
+	$('.btn1').click(function(){
+		console.log(1)
+		  var request={
+                page_type:4
+            	}
+
+            $('#add_apk').ajaxSubmit({
+                url: '01.php',
+                data:request,
+                type: 'post',
+                dataType: 'json',
+                success: function(result) {
+                    console.log(result);
+                }
+
+            });
+	})
+</script>
+</html>
+     

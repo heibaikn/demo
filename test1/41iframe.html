@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.9.1.js"></script>
+	<script>
+		$(function($){
+			console.log($(window.frames["a"].document).find('#kn').get(0));
+			console.log($('#a').contents().find('#kn').css('height'));
+			console.log($(window.frames['a']).find("#kn"));
+			console.log(window.frames['a']);
+			console.log(document.getElementById("a").contentWindow.document);
+
+		})
+	</script>
+</head>
+<body>
+	<iframe id="a" name="a" src="41zi.html" frameborder="0"></iframe>
+</body>
+</html>
+     

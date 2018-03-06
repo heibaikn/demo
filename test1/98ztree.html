@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.9.1.js"></script>
+	<script src="js/underscore-min.js"></script>
+
+</head>
+<body>
+	
+
+</body>
+	<script>
+		var res=["AndroidManifest.xml","res/anim/abc_fade_in.xml","res/anim/abc_fade_out.xml"];
+		var zTree=[];
+
+		for(var i in res){
+			setData(res[i])
+		}
+		function setData(item){
+			console.log(item)
+			if(item.indexOf('/')==-1){
+				zTree.push({'id':item, 'pId':0, 'name':item})
+				return;
+			}
+
+			var arr=item.split('/');
+			// var zname=arr.pop();
+			var n=[];
+			for(var j=0;j<arr.length-1;j++){
+				n.push(arr[j])
+				if(!_.find(zTree, function(v){ 
+					return v.id == n.join('/')
+				})){
+					var idStr=n.join('/');
+					if(n.length==1){
+						zTree.push({'id':idStr, 'pId':0, 'name':arr[j]})
+					}else{
+						zTree.push({'id':idStr, 'pId':idStr.substr(0,idStr.lastIndexOf('/')),'name':arr[j]})
+					}
+				}
+			}
+			// console.log(arr)
+			zTree.push({'id':item, 'pId':item.substr(0,item.lastIndexOf('/')), 'name':item.substr(item.lastIndexOf('/')+1,item.length)})
+
+		}
+		console.log(JSON.stringify(zTree))
+		console.log(zTree)
+	</script>
+</html>
+     

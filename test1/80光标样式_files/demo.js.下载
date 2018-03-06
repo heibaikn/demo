@@ -1,0 +1,23 @@
+﻿function playit_onload()
+	{
+	var preval=""
+	preval=document.getElementById("preselectedValue").value
+	if (preval!="")
+		{
+		change_position(preval)
+		var x=document.getElementsByTagName("input")
+		var l=x.length
+		for (i=0;i<l;i++)
+			{
+			if (x[i].value==preval)
+				{
+				x[i].checked=true
+				}
+			}
+			}
+	}
+	
+	function click_position(obj)
+	{
+	change_position(obj.value)
+	}

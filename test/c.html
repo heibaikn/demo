@@ -1,0 +1,59 @@
+  /*      const h = this.$createElement;
+            this.$messageBox({
+                title: '验证手机',
+                message: h('app-verify', {
+                    props: {
+                        userphone: this.formRegister.phone,
+                        type: 'code'
+                    },
+                    ref: 'myRef'
+                }),
+                customClass: 'k-verify',
+                showCancelButton: false,
+                confirmButtonText: '确定',
+                confirmButtonClass: 'el-button--success phone-verify-confirm',
+                beforeClose: (action, instance, done) => {
+                    if (action === 'confirm') {
+                        if (!this.$refs.myRef.registerCode()) {
+                            return
+                        }
+                        console.log(this.$refs.myRef.formVerify)
+                        // return
+                        instance.confirmButtonLoading = true;
+
+                        // instance.confirmButtonText = '请等待...';
+                        Api.registerVerificationCode(this.$refs.myRef.formVerify).then(v => {
+                            if (v.code == 200) {
+                                let request = {
+                                    userName: this.formRegister.userName,
+                                    password: this.formRegister.password,
+                                    phone: this.formRegister.phone,
+                                    area: 1,
+                                    verificationCode: this.$refs.myRef.formVerify.verificationCode,
+                                    computerGraphicsType: this.formRegister.type
+                                }
+                                return Api.register(request);
+                            }
+                            return false;
+                        }).then(v => {
+                            instance.confirmButtonLoading = false;
+                            if (v.code == 200) {
+                                setTimeout(() => {
+                                    this.go('setUserInfo')
+                                }, 300);
+                                done();
+                                this.$refs.myRef.formVerify.verificationCode = '';
+                            } else if (!v) {
+                                this.$refs.myRef.error = 1;
+                            } else {
+                                this.$refs.myRef.error = 2;
+                            }
+                        })
+                    } else {
+                        done();
+                    }
+
+                }
+            }).then(action => {
+
+            }); */

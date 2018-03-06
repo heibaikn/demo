@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.9.1.js"></script>
+	<script>
+		// 
+		console.json=function(s){
+			console.log(typeof s)
+			if(typeof s =='object'){
+				console.log(JSON.stringify(s))
+			}
+			if(typeof s =='string'){
+				console.log(JSON.parse(s))
+			}
+		}
+		// console.json({1:2,2:3})
+		var str='{"href":"baidu.com","text":"test","orgId":123,"dataType":"curry","activeClass":"haha"}'
+		console.json(str)
+	</script>
+
+</head>
+<body>
+	
+
+</body>
+
+</html>
+     

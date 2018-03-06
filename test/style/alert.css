@@ -1,0 +1,61 @@
+.carousel-show{position: relative;width: 100%;height:436px;overflow: hidden;}
+.carousel-wrapper li{position: absolute; display: none;left: 0;right: 0;top: 0;bottom: 0;}
+.carousel-wrapper li a{width:100%;background-repeat: no-repeat;background-position: center top;display: block;height:436px;}
+.carousel-btn{position: absolute;top:50%;width:60px;height:60px;margin-top: -30px;transition: all .5s;opacity: 0;}
+.carousel-show:hover .carousel-btn{transform: translateX(0);-webkit-transform: translateX(0);opacity: 1;}
+.btn-prev{left: 50%;margin-left: -500px; background-position: -250px 0;transform: translateX(-10px);}
+.btn-next{left:50%;margin-left: 440px; background-position: -314px 0;transform: translateX(10px);}
+.controller{position: absolute;width:100%;bottom: 23px;left:0;text-align: center;z-index: 2;}
+.controller span{width:18px;height:2px;border:1px solid #fff;overflow: hidden;display: inline-block;margin: 0 5px;cursor: pointer;}
+.controller span.active{border-color: #03709b;background: #03709b;}
+/*feartures*/
+.features .btn-getin:hover{background-color: #fafafa;}
+.features-list{padding: 80px 0 100px;}
+.features-list li,.solves-more li,.contact-list li{width:31.33%;float: left;padding:0 1%;}
+.features-list li:after{display: block;content: '';clear: both;}
+.features-list h3{float: left;text-align: center;width:136px;font-size: 24px;color: #22bfe3;font-weight: bold;}
+.features-list h3 .ico{width:73px;height:74px;display: block;margin:0 auto;}
+.ico-protect{background-position: 0 0;}
+.ico-timely{background-position: -85px 0;}
+.ico-lowprice{background-position: -167px 0;}
+.features-list li p{float: left;padding-left: 20px;font-size: 18px;line-height: 28px;height:100px;padding-top: 10px; background-position: -389px 0;}
+/*solves*/
+.solves{padding: 80px 0;margin-left: -1px;}
+.solve-list{padding-top:35px;}
+.solve-list li{float: left;_display:inline; width:199px;margin-left: 1px;position: relative;overflow: hidden;cursor: pointer;}
+.solve-tit{position: absolute;top:12px;left:15px;font-size: 20px;color: #fff;font-weight: bold;transform: translateY(0);transition: all .3s;}
+.solve-des{z-index: 2;position: absolute;top:0;left:0;width:100%;height:100%;opacity:0;transition: all .5s;}
+.solve-list li:hover .solve-tit{transform: translateY(-100px);}
+.solve-list li:hover .solve-des{opacity: 1;}
+.solve-cov{position: absolute;top:0;left:0;width:100%;height:100%;background: #fff;opacity: 0.83;filter: alpha(opacity=83);}
+.solve-des p{padding: 35px 9px 0;font-size: 12px;color: #495367;position: relative;z-index: 2;line-height: 20px;}
+/*solves-more*/
+.solves-more{padding: 110px 0 180px;}
+.more-solves-list{padding-top: 70px;}
+.more-solves-list li .ico{float: left;margin-right: 15px;width: 73px;height:70px;}
+.ico-showdata{background-position: 0 -91px;}
+.ico-selfdown{background-position: -85px -91px;}
+.ico-datadown{background-position: -167px -91px;}
+.more-solves-list li h6{font-size: 20px;}
+
+/**pop**/
+.pop{width:353px; height:205px;;font-size:12px; color:#9cc0d4;overflow:hidden;font-family:"\5FAE\8F6F\96C5\9ED1";background:#fff}
+
+.pop-bg{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.2);z-index:998;}
+.btbox{ height:40px;background:#32a6d1}
+.gb{ width:24px; height:24px; float:right; display:inline; margin:5px 5px 0 0;display:block; text-indent:-9999px; background:url(../images/tcbg.png) no-repeat;}
+.gb:hover{ background-position:0 -24px;}
+.gb:active{ background-position:0 -48px;}
+.cont{ padding-top:22px; text-align:center;}
+.cont img,.cont p{ display:inline-block; margin:0 8px; vertical-align:top;}
+.cont p{ text-align:left;color:#1097C7}
+.cont1{ padding-top:37px;}
+.cont1 .jx_inf{line-height:33px;padding:0 }
+.cont1 .show_info{line-height:23px;padding:0 5px}
+.jx_inf{line-height:20px; font-size:14px;}
+.jx_inf span{ color:#00fb76;}
+.an_box{ padding-top:18px; text-align:center; height:32px;}
+.an_box a{width:100px; height:32px;  display:inline-block;background-position:0 0; text-align:center; line-height:32px; font-size:14px; margin:0 19px;}
+.an_box a:hover{ background-position:0 -32px; text-decoration:none;}
+.an_box a:active{ background-position:0 -64px;}
+

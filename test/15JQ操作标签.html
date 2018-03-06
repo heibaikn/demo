@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.9.1.js"></script>
+	<script>
+	/*************************************************************/
+		$(function(){
+	/*******after before******************************************************/
+
+			//在标签后添加 在匹配的元素之后插入内容。
+			$('.div1').after('<p>after-1</p>');
+			// 在标签前添加
+			$('.div1').before('<p>before-1</p>');
+	/*******append prepend******************************************************/
+
+			// 在标签里面添加 向匹配元素集合中的每个元素结尾插入。
+			$('.div2').append('<p>after-2</p>');
+			//余append的只是内容和选择器的位置不同，以及 append() 能够使用函数来附加内容。
+			$("<p>after-3!!</p>").appendTo(".div3");
+			$('.div2').prepend('<p>before-2</p>');
+			$("<p>before-3!!</p>").prependTo(".div3");
+	/*******insertAfter insertBefore**************************************************/
+			//insertAfter 将一个元素(新、已存在)插入到另一个元素尾部
+			$('.div1').get(0).onclick=function(){
+				$('<a href="#">a</a>').insertAfter('.div1');
+			}
+			$('.div2').click(function(){
+				$('a').insertBefore('.div2');
+			});
+	/*******remove detach**************************************************/
+	// detach() 方法移除被选元素，包括所有文本和子节点。
+	// 这个方法会保留 jQuery 对象中的匹配的元素，因而可以在将来再使用这些匹配的元素。
+	// detach() 会保留所有绑定的事件、附加的数据，这一点与 remove() 不同。
+			var keep;
+			$('.div3').click(function(){
+				keep=$('a').remove();
+				$('.div3').after($('.div1').remove());//保留原有事件????
+			})
+			$('.div4').click(function(){
+				keep=$('a');
+				$('.div4').after($('.div1').detach());//保留原有事件
+			})
+			$('.div5').click(function(){
+				$('.div5').prepend(keep);
+			})
+	/*******replaceAll() replaceWith**************************************************/
+	// replaceWith 	替换
+	// replaceAll	 作用相同。差异在于语法：内容和选择器的位置，以及 replaceWith() 能够使用函数进行替换。
+/*			$('.div6').click(function(){
+				// $('a').replaceWith("<b>Hello world!</b>");
+				// $('<b>Hello world!</b>').replaceAll('a');
+			})*/
+	/*******replaceAll() replaceWith**************************************************/
+			$('.div6').click(function(){
+				// $('a').wrap('<div></div>');//每个a外面生成div 内容或元素中。
+				// $('a').wrapInner('<div></div>');//再每个a里面添加div包含内容
+				$('a').wrapAll('<div>1<div>2</div></div>');//再每个a外面生成div 且将a放在一起包含内容
+			})	
+
+		})
+	</script>
+	<style>
+		div{
+			height: 60px;
+			border: 1px solid #000;
+			margin: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="div1">1</div>
+	<div class="div2">2</div>
+	<div class="div3">3</div>
+	<div class="div4">4</div>
+	<div class="div5">5</div>
+	<div class="div6">6</div>
+	<div class="div7">7</div>
+	<a href="#">a</a>
+</body>
+</html>

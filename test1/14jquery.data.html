@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.9.1.js"></script>
+
+</head>
+<body>
+	<div class="div"></div>	
+	<div class="div1"></div>
+	<p data-say="world"></p>
+</body>
+	<script>
+		$(".div").data("say", "hello");  
+		$(".div1").data("say", "hello1");  
+		console.log($("div").data('say'))	//获取第一个 dom的data  hello
+		$("div").removeData("blah");  //移除say
+		console.log($('p').data('say'))  //world
+		console.log($('.div'))
+	</script>
+</html>
+     

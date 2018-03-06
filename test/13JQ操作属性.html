@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.9.1.js"></script>
+	<script>
+		//jquery.attr 可以访问设置属性
+		//参数形式1.
+		$(function(){
+			//获取
+			$('.div1').click(function(){
+				//$.attr('can') 获取属性
+				var a1=$('.div1').attr('title');//获取div的属性title
+				console.log(a1);
+			});
+
+			//设置  	参数可以为 1.字符串 方法  2.行内style 也是属性的一种
+			$('.div2').bind('click',function(){
+				//$.attr('can','') 设置属性 字符串
+				var a1=$('.div2').attr('dir','rtl');//修改div的属性dir
+				console.log(a1);
+			});
+			$('.div3').on('click',function(){
+				// 参数是方法fn
+				$('.div3').attr('title',function(){
+					return $('.div3').attr('class');
+				})
+			})
+			//直接操作内敛样式
+			$('.div5').on('click',function(){
+				// 参数是方法fn
+				$('.div5').attr('style','height:90px;width:100px;')
+			})
+			//删除
+			$('.div4').on('click',function(){
+				$('.div4').removeAttr('title')
+			})
+		})	
+		</script>
+	<style>
+		div{
+			height: 100px;
+			border:1px solid #000;
+			margin: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="div1" title="title1"></div>
+	<div class="div2">123</div>
+	<div class="div3"></div>
+	<div class="div4" title="aa"></div>
+	<div class="div5"></div>
+	<p dir="rtl">Write this text right-to-left!</p>
+
+</body>
+</html>
+

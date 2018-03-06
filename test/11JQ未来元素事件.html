@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+	/**一、添加事件 jquery.click()***************************************************************/
+/*	$().ready(function(){
+		$("#div1").click(function(){
+			console.log(12); 
+		  $("#div1").append(" <div>Hello world!</div>");	
+		  //append 向匹配元素集合中的每个元素结尾插入由参数指定的内容。元素内
+
+		  //appendTo 向目标结尾插入匹配元素集合中的每个元素。		   
+		  //ele.insertAfter('div')  ele元素紧跟div元素后面
+		  //before
+		});
+	})*/
+
+	/**二、添加绑定事件jquery.bind()***************************************************************/
+	$(function(){
+		//添加单个事件  bind在冒泡中执行 
+		$('#div2').bind("click",function(){console.log('div1:click1')});
+		$('#div2').bind("click",function(){console.log('div1:click2')});
+		var  a=document.getElementById("div21");
+		a.addEventListener('click', function(){console.log('a')}, true);//捕获中
+		//bind绑定多个事件  同个事件不能重复
+		$('#div1').bind({"click":function(){console.log('div1:click1')},"mousedown":function(){console.log('div1:click2')}});
+	})
+	/**三、添加未来事件 jquery.delegate***************************************************************/
+	// 指定的元素（属于被选元素的子元素）添加一个或多个事件处理程序， 必须为子元素	
+	$(function(){//delegate 性能优于 on
+		$('body').delegate('.div1','click',function(){//绑定未来元素 ，click事件要绑定到未来事件的父元素里面，再通过on参数匹配相应未来元素
+			$('body').append('<div class="div1">div1</div>');
+		});
+
+		$('.div').bind('click',function() {//事件，子元素(子元素才生效)，方法
+			$('body').append('<div class="div1">div1</div>');
+		});
+	})
+	/**四、添加未来事件jquery.live()/ on()  ***************************************************************/
+	//live() 方法为被选元素附加一个或多个事件处理程序，为当前元素和未来元素绑定。  JQ1.9之前
+	//on																		   JQ1.9之后
+	//可以为自身事件，也可以为子元素事件
+/*	$(function(){
+		$('body').on('click','.div1',function(){//绑定未来元素 ，click事件要绑定到未来事件的父元素里面，再通过on参数匹配相应未来元素  事件在父元素里面查看
+			$('body').append('<div class="div1">div1</div>');
+		});
+
+		$('.div').bind('click',function() {//事件，子元素(子元素才生效)，方法
+			$('body').append('<div class="div1">div1</div>');
+		});
+
+	})*/
+
+	</script>
+
+	<style>
+		div{
+			margin: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div id="div1" class="div">div1</div>
+	<div id="div2">div2</div>
+	<div id="div3">div3</div>
+	<div id="div4">div4</div>
+	<div class="div1">div1</div>
+</body>
+</html>

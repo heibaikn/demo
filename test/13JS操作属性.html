@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		window.onload=function(){
+			//1、dom操作属性样式的赋值用='';
+			var div=document.getElementsByTagName('div');
+			/***一、dom访问**********************************************/
+			var attr=div[0].attributes;
+			/***dom.属性=''**********************************************/
+			div[0].onclick=function(){
+				//获取
+				var b=div[0].attributes;			//获取所有
+				console.log(b);
+				var a=this.getAttribute('name');
+				//设置 1)
+				this.setAttribute('style','background:red;');
+				this.title='div1';
+				div[0].className='div';				//class的赋值
+				//删除
+				div[0].removeAttribute('class');
+			}
+			/***二、dom css**********************************************/
+			div[1].onclick=function(){
+				//获取
+				//style 为行内样式   内部、外部ie currentStyle  ff getComputedStyle
+				var css=this.style;			//获取所有
+				var css1=getComputedStyle(this);
+				// var gao=getComputedStyle(this,null).height;	//
+				// var gao=this.currentStyle['height']; 		//ie
+				// alert(gao);
+				// 设置1)	
+				css.background='green';						//单个样式
+				css.cssText="height:200px;width:200px;";	//多个样式		无法共存
+			}
+
+			div[2].addEventListener('click',function(){
+				var a=document.getElementsByTagName('input')[0];
+				a.value="aa";
+				console.log(a);
+			})
+		}
+	</script>
+	<style>
+		div{
+			height: 100px;
+			border:1px solid #000;
+			margin: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="div1" name='kn'></div>
+	<div class="div2"></div>
+	<div class="div3"></div>
+	<div class="div4"></div>
+	<input type="text">
+</body>
+</html>

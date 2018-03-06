@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>属性替换加强版</title>
+  <script src="js/jquery-1.9.1.js"></script>
+  <script>
+	$(function(){
+		/*自动轮播*/
+		function focus(){
+			var i=0;
+			var imgs=$(arguments[0]+' img');
+			var btns=$(arguments[1]+' li');
+			function change(){
+				imgs.hide();
+				imgs.eq(i).fadeIn(1000);
+				btns.eq(i).addClass('current').siblings().removeClass('current');
+			}
+			//背景切换
+			this.changeBg=function(){
+			//角标切换中，如果等于imgs的长度则归零循环切换
+			i++;
+			i==imgs.length&&(i=0);
+			change();
+			}
+			//鼠标事件
+			btns.mouseover(function(){
+			// 	console.log(this);
+				i=btns.index(this);//初始化鼠标所在的当前的li的角标
+				imgs.hide();//隐藏所有
+				imgs.eq(i).show(300);//显示当前角标对应的图片
+				$(this).addClass('current').siblings().removeClass('current');//添加当前按钮样式
+
+			})
+			//左右点击事件  在事件中this 当前对象都会被替换
+			$('#prev').click(function(){
+				i--;
+				i<0&&(i=imgs.length-1);
+				change();
+			})
+			$('#next').click(function(){
+				i++;
+				i==imgs.length&&(i=0);
+				change();
+			})
+			//定时器
+			this.run=function(){
+				var fun=this.changeBg;
+				var t=setInterval(this.changeBg,2000);
+				$('#wrap').hover(function(){
+					clearInterval(t);
+				},function(){
+					t=setInterval(fun,2000);//注意一定要用变量接住！
+				})
+			}
+
+			
+		}
+		var jiaodian=new focus('#banner','.ctrlbtn');
+		jiaodian.run();
+
+
+		// var i=0;
+		// var imgs=$('#banner img');
+		// var btns=$('.ctrlbtn li');
+		// function changeBg(){
+		// 	//角标切换中，如果等于imgs的长度则归零循环切换
+		// 	i++;
+		// 	i==imgs.length&&(i=0);
+		// 	imgs.hide();
+		// 	imgs.eq(i).fadeIn(1000);
+		// 	btns.eq(i).addClass('current').siblings().removeClass('current');
+			
+		// }
+		// // changeBg();0
+		// var t=setInterval(changeBg,2000);
+
+		// /*鼠标进入轮播暂停功能*/
+		// $('#banner').hover(function(){
+		// 	clearInterval(t);
+		// },function(){
+		// 	t=setInterval(changeBg,200);//注意一定要用变量接住！
+		// })
+
+		// /*手动查看功能*/
+		// btns.mouseover(function(){
+		// 	console.log(this);
+		// 	i=btns.index(this);//初始化鼠标所在的当前的li的角标
+		// 	imgs.hide();//隐藏所有
+		// 	imgs.eq(i).show(300);//显示当前角标对应的图片
+		// 	$(this).addClass('current').siblings().removeClass('current');//添加当前按钮样式
+		// })
+	})
+  </script>
+    <style>
+	*{margin:0; padding:0;list-style:none;}
+	#banner{width:100%;height:500px;overflow:hidden;position:relative;background:#ddd;}
+	#banner img{position:relative;top:0;left:50%;margin-left:-720px;overflow:hidden;}
+	.ctrlbtn{position:absolute;right:110px; bottom:15px;}
+	.ctrlbtn li{ float:left; margin:0 5px; width:22px; height:22px; cursor:pointer; line-height:22px;background:#b29f90;color:white;border-radius:50%;text-align:center}
+	.ctrlbtn .current{background:#e5007e;}
+	#banner a{
+		display: inline-block;
+		z-index: 99;
+/*		height: 100px;
+		width: 100px;
+		background: red;*/
+	}
+  </style>
+ </head>
+ <body>
+ <div id="wrap">
+  <div id="banner">
+	<img src="images/banner01.png">
+	<img src="images/banner02.png">
+	<img src="images/banner03.png">
+	<ul class="ctrlbtn">
+    	<li class="current">1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+
+  </div>
+      	<a id="prev"><img src="images/prev.png" /></a>
+		<a id="next"><img src="images/next.png" /></a>
+</div>
+ </body>
+</html>

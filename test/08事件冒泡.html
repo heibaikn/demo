@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <!-- 1. （由外向内）捕获：从最外层html元素开始，向内逐层记录每层元素绑定的事件处理函数。到目标元素为止 
+    2. 目标触发：自动执行目标元素上绑定的事件处理函数
+    3. （由内向外）事件冒泡：从目标元素的父元素开始，逐层向上执行每层的事件处理函数，到最外层html结束。-->
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.d1 .d2 .d3{cursor:pointer}
+		.d1 {
+		  background-color: green;
+		  position: relative;
+		  width: 150px;
+		  height: 150px;
+		  text-align: center;
+		  cursor: pointer;
+		}
+
+		.d2 {
+		  background-color: blue;
+		  position: absolute;
+		  top: 25px;
+		  left: 25px;
+		  width: 100px;
+		  height: 100px;
+		}
+
+		.d3 {
+		  background-color: red;
+		  position: absolute;
+		  top: 25px;
+		  left: 25px;
+		  width: 50px;
+		  height: 50px;
+		  line-height: 50px;
+		}
+	</style>
+	<script>
+	window.onload=function(){
+		var divs=document.getElementsByTagName("div");//找到所有div
+
+		for(var i=0;i<divs.length;i++){
+			//遍历每个div
+			//为每个div绑定onclick事件处理函数为fun
+			divs[i].addEventListener("click",capture,true);
+			divs[i].addEventListener("click",bubble,false);
+			}
+		}
+
+		function bubble(){
+			console.log('冒泡',this.className)
+
+			// this.style.backgroundColor="yellow";
+			// this.style.backgroundColor="";
+			//var src=e.srcElement||e.target;
+			/*取消冒泡*/
+			// var e=window.event||arguments[0];
+	/*		if(e.stopPropagation){
+				e.stopPropagation();	//mozilla webkit  
+			}else{
+				e.cancelBubble=true;	//IE  webkit
+			}*/
+		}
+		function capture(){
+			console.log('捕获',this.className)
+		}
+	</script>
+</head>
+<body>
+
+    	<div class="d1">
+			<div class="d2">
+				<div class="d3">
+				</div>
+			</div>
+		</div>
+</body>
+</html>

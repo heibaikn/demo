@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.9.1.js"></script>
+	<script>
+		$(function(){
+			$("[name='rad']").on('change',function(){
+				console.log('1');
+			})
+			$('body').append('<input type="radio" value="1" name="rad">2');
+			console.log($('input.a'));
+			console.log($('#123').attr('author'));
+			var a=document.getElementById('123');
+			console.log(a.author);
+			// 得到选择的val  根据val默认选择radio
+		})
+	</script>
+</head>
+<body>
+	<input type="radio" value="1" name="rad" class="a">1
+	<input type="radio" value="2" name="rad">1
+	<input type="radio" value="3" name="rad">1
+	<input type="radio" value="4" name="rad">1
+	<div id="123" class="a" author="kn"></div>
+
+</body>
+</html>
+     

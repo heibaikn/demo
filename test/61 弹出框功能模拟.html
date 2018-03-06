@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="style/alert.css">
+	<script src="js/jquery-1.9.1.js"></script>
+
+</head>
+<body>
+	<a href="#" class="alert">弹出框</a>
+<div class="pop" style="display:none">
+	<div class="btbox"><a href="javascript:popHide()" class="gb">x</a></div>
+	<div class="cont cont1 clearfix">
+		<p class="jx_inf"></p>
+	</div>
+	<div class="an_box">
+		<a href="javascript:popHide()" class="btn-comm-small btn-comm-white btn submit_info">确 定</a>
+	</div>
+</div>
+
+</body>
+<script>
+	function popShow(popBox) {
+    popId = popBox;
+	var p=$(popBox);
+    p.show();
+	//console.log(($(window).height() - p.height()) / 2);
+	p.css({
+		position: 'fixed',
+		top: ($(window).height() - p.height()) / 2,
+		left: ($(window).width() - p.width()) / 2,
+		marginTop:0,
+		marginLeft:0,
+		zIndex: 1005
+	});
+    $('.pop-bg').show();
+    $('<span class="pop-bg"></span>').appendTo("body");
+}
+
+function popHide() {
+   $(popId).hide();
+    $('.pop-bg').remove();
+};	
+
+$('.alert').click(function(){
+	popShow('.pop');
+	$(".jx_inf").html("游戏名称不能为空")
+})
+</script>
+</html>
+     

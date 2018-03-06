@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+	//js的面向对象称之为面向原型的面向对象  原型和原型链在面向对象中有很大的体现
+	function faInfo(){fa='baba';}//faInfo构造 函数对象
+	var fa=new faInfo();
+			//fa为实例化后的对象
+	
+	fa.__proto__.aa='字母';		//通过修改fa对象的原型，影响faInfo函数对象，-->将fa(原型对象)的内部__proto__(原型)指向faInfo构造函数的prototype(原型)-->同一个内存空间
+	console.log(fa);					//有aa		修改fa的原型
+	console.info(faInfo.prototype);		//有aa		查看faInfo的原型
+	var fa1=new faInfo();
+	console.log(fa1.aa);				//有aa		fa1的原型内有aa属性
+	console.info(faInfo.prototype===fa1.__proto__);//true
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

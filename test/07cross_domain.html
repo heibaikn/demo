@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.11.3.js"></script>
+	<script>
+	/**********一、jsonp*******************************************/
+	//通过script标签引入一个js文件，这个js文件载入成功后会执行我们在url参数中指定的函数，并且会把我们需要的json数据作为参数传入。所以jsonp是需要服务器端的页面进行相应的配合的。
+	//1. callback参数 为方法名
+	//方法在跨域访问链接<script src="http://test.com/07cross_domain.php?callback=username"> <//script>的前面
+	// function username(data){
+	// 		console.log(data);//[1, 2, "username"]
+	// 	}
+	// <script src="http://test.com/07cross_domain.php?callback=username"> <//script>
+		
+
+
+
+	//2.jquery 封装jsonp 实现跨域访问
+
+/*	$.getJSON('http://test.com/07cross_domain.php?callback=?',function(data){
+		console.log(data);//[1, 2, "jQuery111308241057162129959_1460185199870"]
+	})*/
+
+	/***********二、******************************************/
+/*	document.domain = 'test.com';
+	var ifr = document.createElement('iframe');
+	ifr.src = 'http://script.a.com/b.html';
+	ifr.style.display = 'none';
+	document.body.appendChild(ifr);
+	ifr.onload = function(){
+	    var doc = ifr.contentDocument || ifr.contentWindow.document;
+	    // 在这里操纵b.html
+	    alert(doc.getElementsByTagName("h1")[0].childNodes[0].nodeValue);
+	};*/
+	/*****************************************************/
+
+	/*****************************************************/
+	/*****************************************************/
+		
+	</script>
+
+	<script>  
+	function onload(){
+		var iframe=document.getElementsById('i');
+		var win =iframe.contentWindow;
+		win.postMessage('haha','*');
+	}
+   	</script>  
+	
+</head>
+<body>
+	<iframe src="http://test.com/a.html" id="i" onload="onload()"></iframe>  
+
+</body>
+</html>

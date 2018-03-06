@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		window.onload=function(){
+			var div=document.getElementsByTagName('div');
+			for (var i = 0; i <div.length; i++) {
+				if(i%2==0){
+					//双数
+						div[i].onclick=function(){
+							this.style.background="red";
+						}
+					}else{
+					//单数
+						div[i].onclick=function(){
+							this.style.background="green";
+						}
+					}
+		
+
+			}
+		};
+	</script>
+	<style>
+		div{
+			height: 20px;
+			border: 1px solid #000;
+			margin: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div>1</div>
+	<div>2</div>
+	<div>3</div>
+	<div>4</div>
+</body>
+</html>

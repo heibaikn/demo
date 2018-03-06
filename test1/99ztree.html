@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.9.1.js"></script>
+
+</head>
+<body>
+	
+
+</body>
+	<script>
+
+
+		// var res=["res/anim/abc_fade_in.xml","res/anim/abc_fade_out.xml"]
+		var res=['a/b/c','a/b','b/c/c','z']
+/*		console.log(res)
+		for(var k in res){
+			var row=res[k].split('/');
+			get_nav_format(row);
+		}
+		*/
+		
+		function add_nav_info(nav_info, nav_list){
+			tmp = nav_info;
+			for (var i = 0; i < nav_list.length; i++) {
+	            if (i != 0) {
+	                tmp = tmp.dirs;
+	            }
+
+	            var find_index = -1;
+	            //遍历dir
+	            for (var j = 0; j < tmp.length; j++) {
+	                if (nav_list[i] == tmp[j].name) {
+	                    find_index = j;
+	                    break; //跳出此层循环
+	                }
+	            }
+	            if (find_index == -1) {
+	                tmp.push({"name": nav_list[i], "dirs": [], "eles": []})
+	                tmp = tmp[tmp.length - 1];
+	            }
+	            else {
+	                tmp = tmp[find_index]; //找到的dir
+	            }
+
+	        }
+	        tmp["eles"].push({"name": tmp.name});
+			// console.log(nav_info,nav_list);
+
+		}
+		function get_nav_format(data){
+			first_nav_dict={};
+			nav_info=[];
+			// var row=item.split('/');
+			for(var i in data){
+				var row=data[i].split('/');
+				if (!first_nav_dict[row[0]]) {
+	                first_nav_dict[row[0]] = [];
+	                tmp = {"name": row[0], "dirs": [], "eles": []};
+	                nav_info.push(tmp);
+	            }
+				add_nav_info(nav_info,row)
+			}
+
+			return nav_info;
+		}
+		var nav_data=get_nav_format(res);
+		console.log(nav_data)
+
+		var test=[
+					{id:1,pId:0,name:'a'},
+					{id:11,pId:1,name:'b'},
+					{id:111,pId:11,name:'c'},
+					{id:12,pId:1,name:'b'},
+					{id:2,pId:0,name:'a'},
+					];
+		var zTree=[];
+
+
+		var zKey='1',zPid=0;
+		for(var i in nav_data){
+			recur(nav_data[i],zKey,zPid)
+		}
+
+
+		console.log(JSON.stringify(zTree))
+		// console.log(data)
+	</script>
+</html>
+     

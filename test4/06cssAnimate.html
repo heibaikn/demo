@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		@keyframes shake {
+		  from, to {
+		    transform: translate3d(0, 0, 0);
+		  }
+
+		  10%, 30%, 50%, 70%, 90% {
+		    transform: translate3d(-5px, 0, 0);
+		  }
+
+		  20%, 40%, 60%, 80% {
+		    transform: translate3d(5px, 0, 0);
+		  }
+		}
+
+		.shake {
+ 			animation-name: shake;
+  			animation-duration: 1s;
+ 			animation-fill-mode: both;
+
+		}
+	</style>
+
+</head>
+<body>
+
+	<div class="shake">12312313</div>
+</body>
+</html>

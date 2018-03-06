@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.9.1.js"></script>
+	<script>
+	/*
+		extend(obj,src1,src2,src3...);
+		1. 合并对象功能,它的含义是将src1,src2,src3...合并到obj中,返回值为合并后的obj
+	*/
+	var obj={};
+	var result1=$.extend(obj,{name:"Tom",age:21},{name:"Jerry",sex:"Boy"});
+
+	console.log(result1)
+	console.log(obj)
+
+	/*
+		extend(src1,src2,src3...);
+		2. 省略obj参数，可以将方法附加到jquery对象中  name不可以 age可以？ name可能是关键字
+	*/
+	var result2=$.extend({age:21,sex:'男',name1:"Tom"});	
+	$.extend({hello:function(){alert('hello');}});
+	$.username='kn'; 	//可以直接赋值
+	// $.hello();  		//有效
+	console.log($.age);
+	console.log($.name1);
+	console.log($.username);
+	console.log($.sex);
+
+	/*
+		 extend(boolean,obj,src1,src2,src3...)
+		 3.深度探究 比较2级对象
+	*/
+	var result3=$.extend( true,  {},  
+    { name: "John", location: {city: "Boston",county:"USA"} },  
+    { last: "Resig", location: {state: "MA",county:"China"} } );
+    console.log(result3);//{name:"John",last:"Resig",location:{city:"Boston",state:"MA",county:"China"}}
+    
+    var result4=$.extend( false, {},  
+	{ name: "John", location:{city: "Boston",county:"USA"} },  
+	{ last: "Resig", location: {state: "MA",county:"China"} }    );
+    console.log(result4);//{name:"John",last:"Resig",location:{state:"MA",county:"China"}}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
+     

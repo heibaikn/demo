@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="js/jquery-1.9.1.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+<style>
+*{margin:0;padding:0}
+li{list-style-type:none}
+img{width:200px;height:150px;}
+.box{width:800px;height:150px;margin-left:auto;margin-right:auto;position:relative;overflow:hidden}
+.imgBox{width:2400px;position:absolute}
+.imgBox li{float:left}
+</style>
+<body>
+<div class="box">
+	<ul class="imgBox">
+    	<li><img src="images/0.jpg" /></li>
+        <li><img src="images/1.jpg" /></li>
+        <li><img src="images/2.jpg" /></li>
+        <li><img src="images/3.jpg" /></li>
+        <li><img src="images/4.jpg" /></li>
+        <li><img src="images/5.jpg" /></li>
+    </ul>
+</div>
+<script>
+//面向对象形式 封装跑马灯
+function marquee(){
+	this.img=arguments[0]?arguments[0]:'.imgBox';
+	this.speedV=arguments[1]?arguments[1]:'3';
+	this.run=function(){
+		$(this.img).append($(this.img+" li").clone());//把所有图片复制一份   视口有多大追加的图片就有多长
+		var speed = 0;
+		var img=this.img;	//留住 img属性，在定时器中this指向window对象 
+		var v=this.speedV;
+		function imgScroll(){	
+			$(img).css("left",speed);		//每次都滑动speed speed变大
+			if(speed>-1200){
+				speed-=v;					//修改 speed
+			}else{
+				speed=0;	
+			}
+		}
+		var t = setInterval(imgScroll,50);	//定时 执行img滑动
+		$(".box").hover(function(){clearInterval(t);},
+			function(){t=setInterval(imgScroll,50)})
+	}
+}
+var a=new marquee('.imgBox','10');
+a.speedV=4;
+a.run();
+/*$(function(){
+	$(".imgBox").append($('.imgBox li').clone());
+	var spend=0;
+
+})*/
+/*$(".imgBox").append($(".imgBox li").clone());//把所有图片复制一份
+var speed = 0;
+function imgScroll(){
+	$(".imgBox").css("left",speed);
+	if(speed>-1200){
+		speed-=3;	
+	}else{
+		speed=0;	
+	}
+}
+var t = setInterval(imgScroll,50);
+$(".box").hover(function(){
+	clearInterval(t);			 
+},function(){t=setInterval(imgScroll,50)})*/
+</script>
+</body>
+</html>

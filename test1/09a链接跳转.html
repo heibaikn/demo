@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.9.1.js"></script>
+	<script>
+		$('#a').on('click',function(){
+			return false;
+		})
+		function a(){
+			console.log('a')
+			return false;		//阻止跳转
+		}
+	</script>
+</head>
+<body>
+	<a id="a" href="http://www.baidu.com">百度</a>
+	<a id="b" href="http://www.baidu.com" onclick="return a();">百度1</a>
+</body>
+</html>
+     

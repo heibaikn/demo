@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.9.1.js"></script>
+	<script>
+	// jquery 查找dom的效率 比原生慢
+	// jquery 找id比找标签快5倍  js差别快20%
+		$(function(){
+		var time1=new Date();
+		for(var i=0;i<1000000;i++){
+			$('div');										//一百万 8.4秒
+			// $('.div');									//一百万 8.4秒
+			// $('#div');									//一千万 16秒
+
+		}
+		var time2=new Date();
+		console.log(time2-time1);
+
+		var time3=new Date();
+		for(var i=0;i<1000000;i++){
+			document.getElementsByTagName('div');			//一百万 0.16秒  40倍
+			// document.getElementsByClassName('div');		//一百万 0.11	 20倍
+			// document.getElementById('div');				//一千万 0.8秒
+		}
+		var time4=new Date();
+		console.log(time4-time3);
+		})
+	</script>
+</head>
+<body>
+	<div class="div" id="div">1</div>
+</body>
+</html>

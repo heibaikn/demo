@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.9.1.js"></script>
+
+</head>
+<body>
+	
+
+</body>
+<script>
+
+  
+
+	var obj = { a:1, arr: [2,3],func:function(){} };
+
+	// 方式一:使用插件内置方法 如:jquery.extend, angular.copy
+	// 缺陷 依赖插件 jquery返回的是存储在jquery中的对象数据
+	var shadowObj1=$.extend(true,obj)
+
+	//方式二：JSON转换 
+	// 缺陷 1无法复制 2函数原型链没了，对象就是object，所属的类没了---无法复制复杂对象，可用于处理ajax数据
+	var json=JSON.stringify(obj);
+	var b = JSON.parse(json)
+	console.log(shadowObj1)
+
+	// 方式三：方法的实现
+	// 浅拷贝
+	function shadowCopy(src) {
+	  var dst = {};
+	  for (var prop in src) {
+	    if (src.hasOwnProperty(prop)) {
+	      dst[prop] = src[prop];
+	    }
+	  }
+	  return dst;
+	}
+	// 递归实现一个深拷贝
+
+	function deepClone(source){
+	   if(!source && typeof source !== 'object'){
+	     throw new Error('error arguments', 'shallowClone');
+	   }
+	   var targetObj = source.constructor === Array ? [] : {};
+	   for(var keys in source){
+	      if(source.hasOwnProperty(keys)){
+	         if(source[keys] && typeof source[keys] === 'object'){
+	           targetObj[keys] = source[keys].constructor === Array ? [] : {};
+	           targetObj[keys] = deepClone(source[keys]);
+	         }else{
+	           targetObj[keys] = source[keys];
+	         }
+	      } 
+	   }
+	   return targetObj;
+	}
+
+	var o1 = {
+	  arr: [1, 2, 3],
+	  obj: {
+	    key: 'value'
+	  },
+	  func: function(){
+	    return 1;
+	  }
+	};
+	// var o3 = deepClone(o1);
+/*	console.log(o3 === o1); // => false
+	console.log(o3.obj === o1.obj); // => false
+	console.log(o2.func === o1.func); // => true*/
+</script>
+</html>
+     
