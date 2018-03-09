@@ -1,75 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<script src="js/jquery-1.9.1.js"></script>
 
 </head>
+
 <body>
-	
+
 
 </body>
 <script>
 
-  
 
-	var obj = { a:1, arr: [2,3],func:function(){} };
 
-	// ·½Ê½Ò»:Ê¹ÓÃ²å¼þÄÚÖÃ·½·¨ Èç:jquery.extend, angular.copy
-	// È±ÏÝ ÒÀÀµ²å¼þ jquery·µ»ØµÄÊÇ´æ´¢ÔÚjqueryÖÐµÄ¶ÔÏóÊý¾Ý
-	var shadowObj1=$.extend(true,obj)
+	var obj = { a: 1, arr: [2, 3], func: function () { } };
 
-	//·½Ê½¶þ£ºJSON×ª»» 
-	// È±ÏÝ 1ÎÞ·¨¸´ÖÆ 2º¯ÊýÔ­ÐÍÁ´Ã»ÁË£¬¶ÔÏó¾ÍÊÇobject£¬ËùÊôµÄÀàÃ»ÁË---ÎÞ·¨¸´ÖÆ¸´ÔÓ¶ÔÏó£¬¿ÉÓÃÓÚ´¦ÀíajaxÊý¾Ý
-	var json=JSON.stringify(obj);
+	// ï¿½ï¿½Ê½Ò»:Ê¹ï¿½Ã²ï¿½ï¿½ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½:jquery.extend, angular.copy
+	// È±ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ jqueryï¿½ï¿½ï¿½Øµï¿½ï¿½Ç´æ´¢ï¿½ï¿½jqueryï¿½ÐµÄ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	var shadowObj1 = $.extend(true, obj)
+	// console.log(shadowObj1);
+
+	//ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½JSON×ªï¿½ï¿½ 
+	// È±ï¿½ï¿½ 1ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½ 2ï¿½ï¿½ï¿½ï¿½Ô­ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ë£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½objectï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½---ï¿½Þ·ï¿½ï¿½ï¿½ï¿½Æ¸ï¿½ï¿½Ó¶ï¿½ï¿½ó£¬¿ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ajaxï¿½ï¿½ï¿½ï¿½
+	var json = JSON.stringify(obj);
 	var b = JSON.parse(json)
-	console.log(shadowObj1)
+	console.log(b)
 
-	// ·½Ê½Èý£º·½·¨µÄÊµÏÖ
-	// Ç³¿½±´
+	// ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
+	// Ç³ï¿½ï¿½ï¿½ï¿½
 	function shadowCopy(src) {
-	  var dst = {};
-	  for (var prop in src) {
-	    if (src.hasOwnProperty(prop)) {
-	      dst[prop] = src[prop];
-	    }
-	  }
-	  return dst;
+		var dst = {};
+		for (var prop in src) {
+			if (src.hasOwnProperty(prop)) {
+				dst[prop] = src[prop];
+			}
+		}
+		return dst;
 	}
-	// µÝ¹éÊµÏÖÒ»¸öÉî¿½±´
+	// ï¿½Ý¹ï¿½Êµï¿½ï¿½Ò»ï¿½ï¿½ï¿½î¿½ï¿½ï¿½
 
-	function deepClone(source){
-	   if(!source && typeof source !== 'object'){
-	     throw new Error('error arguments', 'shallowClone');
-	   }
-	   var targetObj = source.constructor === Array ? [] : {};
-	   for(var keys in source){
-	      if(source.hasOwnProperty(keys)){
-	         if(source[keys] && typeof source[keys] === 'object'){
-	           targetObj[keys] = source[keys].constructor === Array ? [] : {};
-	           targetObj[keys] = deepClone(source[keys]);
-	         }else{
-	           targetObj[keys] = source[keys];
-	         }
-	      } 
-	   }
-	   return targetObj;
+	function deepClone(source) {
+		if (!source && typeof source !== 'object') {
+			throw new Error('error arguments', 'shallowClone');
+		}
+		var targetObj = source.constructor === Array ? [] : {};
+		for (var keys in source) {
+			if (source.hasOwnProperty(keys)) {
+				if (source[keys] && typeof source[keys] === 'object') {
+					targetObj[keys] = source[keys].constructor === Array ? [] : {};
+					targetObj[keys] = deepClone(source[keys]);
+				} else {
+					targetObj[keys] = source[keys];
+				}
+			}
+		}
+		return targetObj;
 	}
 
 	var o1 = {
-	  arr: [1, 2, 3],
-	  obj: {
-	    key: 'value'
-	  },
-	  func: function(){
-	    return 1;
-	  }
+		arr: [1, 2, 3],
+		obj: {
+			key: 'value'
+		},
+		func: function () {
+			return 1;
+		}
 	};
-	// var o3 = deepClone(o1);
-/*	console.log(o3 === o1); // => false
-	console.log(o3.obj === o1.obj); // => false
-	console.log(o2.func === o1.func); // => true*/
+	o1.__proto__ = { pa: '123' }
+	console.log(o1);
+	var o3 = deepClone(o1);
+	console.log(o3);
+	/*	console.log(o3 === o1); // => false
+		console.log(o3.obj === o1.obj); // => false
+		console.log(o2.func === o1.func); // => true*/
+	// ä½¿ç”¨ assign æ–¹æ³•
+	var o4 = {}
+	Object.assign(o4, o1);
+	o4.__proto__ = o1.__proto__
+	console.log(o3.pa, o4.pa);
+	// console.log(o4.obj === o1.obj);
+	// console.log(o3.obj === o1.obj)
 </script>
+
 </html>
-     

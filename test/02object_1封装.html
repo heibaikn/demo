@@ -1,39 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<script type="text/javascript">
-		{}
+		{ }
 		//6种封装
-		/*************************1.基于Object***********************/
+		/*************************1.赋值方式***********************/
 		var person = new Object();//person 是个对象
 		person.name = 'My Name';
 		person.age = 18;
-		person.getName = function(){
-		    return this.name;
+		person.getName = function () {
+			return this.name;
 		}
 		// console.log(person.getName());
 		/*************************2.直接量**********************/
 		var person = {
-		    name : 'My name2',
-		    age : 18,
-		    getName2 : function(){
-		        return this.name;
-		    }
+			name: 'My name2',
+			age: 18,
+			getName2: function () {
+				return this.name;
+			}
 		}
 		// console.log(person.getName2);
-		
+
 		/*************************3.工厂模式*************************/
 		function createPerson(name, age, job) {
-		    var o = new Object();
-		    o.name = name;
-		    o.age = age;
-		    o.job = job;
-		    o.getName = function () {
-		        return this.name;
-		    }
-	    	return o;//使用return返回生成的对象实例
+			var o = new Object();
+			o.name = name;
+			o.age = age;
+			o.job = job;
+			o.getName = function () {
+				return this.name;
+			}
+			return o;//使用return返回生成的对象实例
 		}
 		//调用方法 return 返回对象
 		var person = createPerson('Jack', 19, 'SoftWare Engineer');
@@ -41,54 +42,57 @@
 
 
 		/****************************4.构造函数模式*********************/
-		function Person(name,age,job){
-		    this.name = name;
-		    this.age = age;
-		    this.job = job;
-		    this.getName = getName;//优化内存 一次声明getName 可以多次调用
+		function Person(name, age, job) {
+			this.name = name;
+			this.age = age;
+			this.job = job;
+			this.getName = getName;//优化内存 一次声明getName 可以多次调用
 		}
 		function getName() {		//申明一个getName 构造器
-		        return this.name;
-		    }
+			return this.name;
+		}
 		//通过new 实例化产生对象
 		var person1 = new Person('Jack', 19, 'SoftWare Engineer');
 		var person2 = new Person('Liye', 23, 'Mechanical Engineer');
 		console.log(person1);
-/*alert(person1 instanceof Person);//true;
-alert(person2 instanceof Person);//true;
-alert(person1 instanceof Object);//true;*/
+		/*alert(person1 instanceof Person);//true;
+		alert(person2 instanceof Person);//true;
+		alert(person1 instanceof Object);//true;*/
 
 		/**************************5.原型模式*************************/
-		   /*原型模式的缺点，它省略了为构造函数传递初始化参数，这在一定程序带来不便；另外，最主要是当对象的属性是引用类型时，它的值是不变的，总是引用同一个外部对象，所有实例对该对象的操作都会其它实例：*/
-		function Person(){
+		/*原型模式的缺点，它省略了为构造函数传递初始化参数，这在一定程序带来不便；另外，最主要是当对象的属性是引用类型时，它的值是不变的，总是引用同一个外部对象，所有实例对该对象的操作都会其它实例：*/
+		function Person() {
 		}
 
 		Person.prototype.name = 'Jack';//使用原型来添加属性
 		Person.prototype.age = 29;
-		Person.prototype.getName = function(){
-		    return this.name;
+		Person.prototype.getName = function () {
+			return this.name;
 		}
 		var person1 = new Person();
-		console.log(person1.valueOf());
-		console.log(person1.toString());
+		// console.log(person1.valueOf());
+		// console.log(person1.toString());
 		// console.log(person1.getName());//Jack
 		var person2 = new Person();
-		// console.log(person1.getName === person2.getName);//true;共享一个原型对象的方法
+		console.log(person1.getName === person2.getName);//true;共享一个原型对象的方法
 
 
 		/*******************6.组合构造函数及原型模式********************/
-		/* 目前最为常用的定义类型方式，是组合构造函数模式与原型模式。构造函数模式用于定义实例的属性，而原型模式用于定义方法和共享的属性。结果，每个实例都会有自己的一份实例属性的副本，但同时又共享着对方方法的引用，最大限度的节约内存。此外，组合模式还支持向构造函数传递参数，可谓是集两家之所长*/
+		/* 目前最为常用的定义类型方式，是组合构造函数模式与原型模式。
+		构造函数模式用于定义实例的属性，而原型模式用于定义方法和共享的属性。
+		结果，每个实例都会有自己的一份实例属性的副本，但同时又共享着对方方法的引用，最大限度的节约内存。
+		此外，组合模式还支持向构造函数传递参数，可谓是集两家之所长*/
 		function Person(name, age, job) {
-		    this.name = name;
-		    this.age = age;
-		    this.job = job;
-		    this.lessons = ['Math', 'Physics'];
+			this.name = name;
+			this.age = age;
+			this.job = job;
+			this.lessons = ['Math', 'Physics'];
 		}
 		Person.prototype = {
-		    constructor: Person,//原型字面量方式会将对象的constructor变为Object，此外强制指回Person
-		    getName: function () {
-		        return this.name;
-		    }
+			// constructor: Person,//原型字面量方式会将对象的constructor变为Object，此外强制指回Person
+			getName: function () {
+				return this.name;
+			}
 		}
 		var person1 = new Person('Jack', 19, 'SoftWare Engneer');
 		person1.lessons.push('Biology');
@@ -99,91 +103,12 @@ alert(person1 instanceof Object);//true;*/
 
 
 
-		/**********************	3.js的访问控制************************/
-			//设置
-		var person = {};
-		Object.defineProperty(person, 'name', {
-		    configurable: false, 	//可删除？
-		    writable: false,		//可重写？
-		    enumerable: false,		//可遍历？
-		    value: 'Jack'
-		});	
-		person.name='kn';
-		delete person.name;
-			/*3.1查看详细属性*/
-		var personInfo=Object.getOwnPropertyDescriptor(person,"name");
-		
-		// console.info(personInfo);
-		// console.log(person);
-		
 
-
-
-
-
-
-		/*4.在定义getter与setter时,同时指定属性的configurable及writable特性；*/
-		// throw person.name;
-/*		var person = {};
-		Object.defineProperties(person,{
-		    _age:{
-		    	configurable: false, 	//可删除？
-		    	writable: true,		//可重写？
-		    	enumerable: false,		//可遍历？
-		        value:19
-		    },
-		    isAdult:{
-		    	name:'kn',
-		        get: function () {
-		            if (this._age >= 24) {
-		                return '成年';
-		            } else {
-		                return '未成年';
-		            }
-		        },
-		    },
-		    name:{
-
-			    set:function(){
-		        console.log('我不想长大');
-		        }
-		    }
-		});*/
-	var person={id:1001,name:"eric"};
-	(function(){
-		var _age=30;//受保护的变量
-		Object.defineProperty(person,"age",{
-			get:function(){return _age;},
-			set:function(value){
-				if(isNaN(value)){
-					throw new Error("年龄必须是数字");
-				}else{
-					_age=value;
-				}	
-			}
-		});
-	})();
-/*	person.age=33;//将"Hello",保存到age中,自动调用set
-	console.log(person.age);//自动调用了get方法
-	person.age="Hello"; //将"Hello",保存到age中,自动调用set
-	console.log(person.age);*/
-
-
-
-
-
-
-		/*5.修改最大的原型*/
-		Object.prototype.show=function(){
-			name:'kn',
-			console.info('修改原型，作用于所有的对象',this);
-			
-		}
-		var kn=new Object();
-		// console.log(kn.show());
 	</script>
 </head>
+
 <body>
-	
+
 </body>
+
 </html>

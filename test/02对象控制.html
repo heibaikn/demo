@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script>
+    /**********************	3.js的访问控制************************/
+    //设置
+    var person = {};
+    Object.defineProperty(person, 'name', {
+      configurable: false, 	//可删除？
+      writable: false,		//可重写？
+      enumerable: false,		//可遍历？
+      value: 'Jack'
+    });
+    person.name = 'kn';
+    delete person.name;
+    /*3.1查看详细属性*/
+    var personInfo = Object.getOwnPropertyDescriptor(person, "name");
+
+    // console.info(personInfo);
+    // console.log(person);
+
+    /*4.在定义getter与setter时,同时指定属性的configurable及writable特性；*/
+    // throw person.name;
+    /*		var person = {};
+        Object.defineProperties(person,{
+          _age:{
+            configurable: false, 	//可删除？
+            writable: true,		//可重写？
+            enumerable: false,		//可遍历？
+            value:19
+          },
+          isAdult:{
+            name:'kn',
+            get: function () {
+              if (this._age >= 24) ˜{
+                return '成年';
+              } else {
+                return '未成年';
+              }
+            },
+          },
+          name:{
+    	
+            set:function(){
+            console.log('我不想长大');
+            }
+          }
+        });*/
+    var person = { id: 1001, name: "eric" };
+    (function () {
+      var _age = 30;//受保护的变量
+      Object.defineProperty(person, "age", {
+        get: function () { return _age; },
+        set: function (value) {
+          if (isNaN(value)) {
+            throw new Error("年龄必须是数字");
+          } else {
+            _age = value;
+          }
+        }
+      });
+    })();
+    /*	person.age=33;//将"Hello",保存到age中,自动调用set
+      console.log(person.age);//自动调用了get方法
+      person.age="Hello"; //将"Hello",保存到age中,自动调用set
+      console.log(person.age);*/
+
+    /*5.修改最大的原型*/
+    Object.prototype.show = function () {
+      name: 'kn',
+        console.info('修改原型，作用于所有的对象', this);
+
+    }
+    var kn = new Object();
+		// console.log(kn.show());
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

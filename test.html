@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script>
+    "use strict";
+
+    function _classCallCheck(instance, Constructor) {
+      console.log((instance instanceof Constructor));
+      if (!(instance instanceof Constructor)) {
+        throw new TypeError("Cannot call a class as a function");
+      }
+    }
+
+    var a = function () {
+      console.log(this, a);
+      _classCallCheck(this, a);
+
+      this.a = 1;
+    };
+
+    var b = new a();
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
